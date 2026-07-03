@@ -40,7 +40,7 @@ export function Hero() {
                 </span>
               </span>
               <span className="text-white/50">
-                <WordReveal text="The ease of Penlo." delay={0.5} />
+                <WordReveal text="The ease of Caret." delay={0.5} />
               </span>
             </h1>
 
@@ -53,7 +53,7 @@ export function Hero() {
             >
               All the benefits of marking up paper with your Apple Pencil,{" "}
               <span className="text-white/80 font-medium">with none of the friction</span>{" "}
-              of retyping every red-pen edit. Penlo reads your marks and applies
+              of retyping every red-pen edit. Caret reads your marks and applies
               them automatically.
             </motion.p>
 
@@ -131,7 +131,7 @@ export function Hero() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/app-annotation.png"
-                  alt="Penlo showing a document marked up with red Apple Pencil strokes"
+                  alt="Caret showing a document marked up with red Apple Pencil strokes"
                   className="w-full h-full object-cover object-top"
                   style={{ display: "block" }}
                 />

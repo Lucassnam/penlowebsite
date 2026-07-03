@@ -6,27 +6,27 @@ import { WordReveal } from "@/components/ui/word-reveal";
 
 const faqs = [
   {
-    q: "What file formats does Penlo support?",
-    a: "Penlo works with standard .docx files, the format used by Microsoft Word, Google Docs exports, Apple Pages, and virtually every other word processor. PDFs and .pages files are not supported in the initial release.",
+    q: "What file formats does Caret support?",
+    a: "Caret works with standard .docx files, the format used by Microsoft Word, Google Docs exports, Apple Pages, and virtually every other word processor. PDFs and .pages files are not supported in the initial release.",
   },
   {
-    q: "Does Penlo require an internet connection?",
-    a: "Yes. Penlo uses CloudConvert to prepare your document and Gemini's vision AI to read your marks. Both require a connection. Your document is sent over an encrypted connection and is not stored or used for training.",
+    q: "Does Caret require an internet connection?",
+    a: "Yes. Caret uses CloudConvert to prepare your document and Gemini's vision AI to read your marks. Both require a connection. Your document is sent over an encrypted connection and is not stored or used for training.",
   },
   {
     q: "Which Apple Pencil models are supported?",
-    a: "Penlo works with all Apple Pencil models (1st gen, 2nd gen, USB-C, and Pro). Any iPad that supports Apple Pencil and runs iPadOS 17 or later will work.",
+    a: "Caret works with all Apple Pencil models (1st gen, 2nd gen, USB-C, and Pro). Any iPad that supports Apple Pencil and runs iPadOS 17 or later will work.",
   },
   {
     q: "What happens to the original document?",
-    a: "Penlo never modifies your original file. When you apply edits, they go into a new copy. Your source document is always untouched.",
+    a: "Caret never modifies your original file. When you apply edits, they go into a new copy. Your source document is always untouched.",
   },
   {
-    q: "How does Penlo handle complex formatting like tables or footnotes?",
-    a: "Penlo's AI focuses on inline edits (insertions, deletions, emphasis marks). Tables, footnotes, headers, and styles are passed through unchanged. Complex structural rewrites are on the roadmap.",
+    q: "How does Caret handle complex formatting like tables or footnotes?",
+    a: "Caret's AI focuses on inline edits (insertions, deletions, emphasis marks). Tables, footnotes, headers, and styles are passed through unchanged. Complex structural rewrites are on the roadmap.",
   },
   {
-    q: "When will Penlo be available?",
+    q: "When will Caret be available?",
     a: "We're targeting an App Store launch later this year. Join the waitlist and you'll be first to know, and first to get early access at a 40% discount.",
   },
 ];
@@ -53,7 +53,7 @@ export function Faq() {
           </h2>
           <p className="mt-4 font-body text-base text-ink-muted">
             We&apos;ve got answers. If not,{" "}
-            <a href="mailto:hello@penlo.app" className="text-pen underline underline-offset-2 hover:text-pen/80 transition-colors">
+            <a href="mailto:hello@caret.app" className="text-pen underline underline-offset-2 hover:text-pen/80 transition-colors">
               email us.
             </a>
           </p>

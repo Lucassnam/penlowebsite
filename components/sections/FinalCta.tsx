@@ -106,7 +106,7 @@ export function FinalCta() {
           </h2>
 
           <p className="font-body text-lg text-white/50 mb-10 leading-relaxed">
-            Penlo is launching on the App Store soon.{" "}
+            Caret is launching on the App Store soon.{" "}
             <span className="text-white/70">Join the waitlist</span> to get early
             access and a{" "}
             <span className="text-pen font-semibold">40% launch discount.</span>

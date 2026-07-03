@@ -45,7 +45,7 @@ export function Nav() {
           href="#"
           className="font-display text-xl font-bold tracking-tight text-white z-10"
         >
-          Penlo
+          Caret
           <span className="text-pen">.</span>
         </a>
 

@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Privacy Policy — Penlo",
-  description: "How Penlo handles your documents and data.",
+  title: "Privacy Policy — Caret",
+  description: "How Caret handles your documents and data.",
 };
 
 export default function PrivacyPage() {
@@ -14,7 +14,7 @@ export default function PrivacyPage() {
           href="/"
           className="inline-flex items-center gap-2 font-display font-bold text-xl text-[#111] hover:opacity-70 transition-opacity"
         >
-          Penlo<span style={{ color: "#E63027" }}>.</span>
+          Caret<span style={{ color: "#E63027" }}>.</span>
         </Link>
       </header>
 
@@ -30,7 +30,7 @@ export default function PrivacyPage() {
         <div className="prose prose-sm max-w-none" style={{ color: "#333", lineHeight: "1.8" }}>
           <Section title="Overview">
             <p>
-              Penlo is an iPad app that reads your handwritten Apple Pencil marks on Word documents
+              Caret is an iPad app that reads your handwritten Apple Pencil marks on Word documents
               and applies them as tracked changes. This policy explains what data leaves your device
               and why.
             </p>
@@ -38,12 +38,12 @@ export default function PrivacyPage() {
 
           <Section title="What we process">
             <p>
-              When you tap Convert in Penlo, two things happen:
+              When you tap Convert in Caret, two things happen:
             </p>
             <ol style={{ paddingLeft: "1.25rem", marginTop: "0.75rem", marginBottom: "0.75rem" }}>
               <li style={{ marginBottom: "0.5rem" }}>
                 <strong>Document conversion.</strong> Your .docx file is sent to{" "}
-                <strong>CloudConvert</strong> (cloudconvert.com) to be rendered as a PDF so Penlo can
+                <strong>CloudConvert</strong> (cloudconvert.com) to be rendered as a PDF so Caret can
                 display it. CloudConvert processes the file on their servers and returns the PDF.
                 CloudConvert&apos;s own privacy policy governs that processing.
               </li>
@@ -63,7 +63,7 @@ export default function PrivacyPage() {
           <Section title="What we do not do">
             <ul style={{ paddingLeft: "1.25rem", marginTop: "0.5rem" }}>
               {[
-                "We do not store your documents on any Penlo server.",
+                "We do not store your documents on any Caret server.",
                 "We do not collect your name, email, or account information unless you join the waitlist.",
                 "We do not sell your data to third parties.",
                 "We do not use your documents to train any AI model.",
@@ -78,18 +78,18 @@ export default function PrivacyPage() {
 
           <Section title="Waitlist">
             <p>
-              If you join the waitlist, we collect your email address so we can notify you when Penlo
-              launches. We will not send marketing emails unrelated to Penlo. You can ask us to remove
+              If you join the waitlist, we collect your email address so we can notify you when Caret
+              launches. We will not send marketing emails unrelated to Caret. You can ask us to remove
               your email at any time by emailing{" "}
-              <a href="mailto:hello@penlo.app" style={{ color: "#E63027", textDecoration: "underline" }}>
-                hello@penlo.app
+              <a href="mailto:hello@caret.app" style={{ color: "#E63027", textDecoration: "underline" }}>
+                hello@caret.app
               </a>
               .
             </p>
           </Section>
 
           <Section title="Third-party services">
-            <p>Penlo currently relies on the following external services:</p>
+            <p>Caret currently relies on the following external services:</p>
             <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "0.75rem", fontSize: "0.85rem" }}>
               <thead>
                 <tr style={{ borderBottom: "1px solid #e5e5e5", textAlign: "left" }}>
@@ -117,8 +117,8 @@ export default function PrivacyPage() {
             <p>
               Depending on where you live, you may have the right to access, correct, or delete
               personal information we hold about you. To make such a request, email us at{" "}
-              <a href="mailto:hello@penlo.app" style={{ color: "#E63027", textDecoration: "underline" }}>
-                hello@penlo.app
+              <a href="mailto:hello@caret.app" style={{ color: "#E63027", textDecoration: "underline" }}>
+                hello@caret.app
               </a>
               . We will respond within 30 days.
             </p>
@@ -127,7 +127,7 @@ export default function PrivacyPage() {
           <Section title="Changes to this policy">
             <p>
               If we make material changes to how we handle your data, we will update this page and
-              change the date at the top. Continued use of Penlo after changes are posted constitutes
+              change the date at the top. Continued use of Caret after changes are posted constitutes
               acceptance of the revised policy.
             </p>
           </Section>
@@ -135,8 +135,8 @@ export default function PrivacyPage() {
           <Section title="Contact">
             <p>
               Questions about this policy?{" "}
-              <a href="mailto:hello@penlo.app" style={{ color: "#E63027", textDecoration: "underline" }}>
-                hello@penlo.app
+              <a href="mailto:hello@caret.app" style={{ color: "#E63027", textDecoration: "underline" }}>
+                hello@caret.app
               </a>
             </p>
           </Section>
@@ -145,7 +145,7 @@ export default function PrivacyPage() {
 
       <footer className="border-t border-black/6 px-6 py-6 text-center">
         <p className="text-xs text-[#aaa] font-sans">
-          &copy; 2026 Penlo. All rights reserved.{" "}
+          &copy; 2026 Caret. All rights reserved.{" "}
           <Link href="/" className="underline hover:text-[#111] transition-colors">
             Back to home
           </Link>

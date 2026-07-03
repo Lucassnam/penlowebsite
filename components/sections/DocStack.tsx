@@ -87,7 +87,7 @@ export function DocStack() {
             <p className="font-body text-base text-ink-muted leading-relaxed">
               Theses, contracts, articles, scripts. If it's a{" "}
               <code className="text-ink font-mono text-sm bg-black/5 px-1.5 py-0.5 rounded">.docx</code>,{" "}
-              Penlo handles it. Every mark you make in red gets applied exactly where you intended.
+              Caret handles it. Every mark you make in red gets applied exactly where you intended.
             </p>
 
             {/* Doc type chips */}

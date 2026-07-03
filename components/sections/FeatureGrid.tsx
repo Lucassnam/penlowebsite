@@ -59,7 +59,7 @@ const features = [
     ),
     title: "Works on any .docx",
     description:
-      "Contracts, manuscripts, essays, reports, scripts. If Word opens it, Penlo marks it. No template lock-in.",
+      "Contracts, manuscripts, essays, reports, scripts. If Word opens it, Caret marks it. No template lock-in.",
     size: "large",
     dark: false,
     accent: "#F59E0B",

@@ -69,7 +69,7 @@ export function Problem() {
             </div>
           </motion.div>
 
-          {/* Penlo side */}
+          {/* Caret side */}
           <motion.div
             className="space-y-6"
             initial={{ opacity: 0, x: 24 }}
@@ -78,13 +78,13 @@ export function Problem() {
           >
             <div>
               <p className="text-xs uppercase tracking-widest font-body text-pen font-semibold mb-4">
-                Penlo
+                Caret
               </p>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-ink leading-tight">
                 Same marks. On your iPad.
               </h2>
               <p className="mt-4 font-body text-base text-ink-muted leading-relaxed">
-                Penlo reads every Apple Pencil mark on your iPad screen: the
+                Caret reads every Apple Pencil mark on your iPad screen: the
                 strikes, carets, circles, periods. It applies them directly into
                 your <code className="text-ink font-mono text-sm bg-black/5 px-1.5 py-0.5 rounded">.docx</code>.
               </p>

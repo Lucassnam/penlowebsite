@@ -17,11 +17,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Penlo — Mark it up like paper. Keep the document.",
+  title: "Caret — Mark it up like paper. Keep the document.",
   description:
-    "Penlo lets you mark up Word documents with Apple Pencil red ink — strikes, carets, circles — and applies every edit back into the real .docx automatically.",
+    "Caret lets you mark up Word documents with Apple Pencil red ink — strikes, carets, circles — and applies every edit back into the real .docx automatically.",
   openGraph: {
-    title: "Penlo — Mark it up like paper. Keep the document.",
+    title: "Caret — Mark it up like paper. Keep the document.",
     description:
       "All the benefits of marking up paper, none of the friction of copying red-pen marks back into the document.",
     type: "website",

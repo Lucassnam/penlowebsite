@@ -96,7 +96,7 @@ export function PenloDocumentMockup({ className, animate = false }: PenloDocumen
           className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
           style={{ opacity: 0.05, fontSize: 40, color: "#888", transform: "rotate(-30deg)", fontWeight: 700 }}
         >
-          PENLO
+          CARET
         </div>
 
         {/* Text content */}

@@ -11,13 +11,13 @@ const steps = [
     number: "01",
     title: "Mark it up",
     description:
-      "Open any Word document in Penlo on your iPad. Pick up your Apple Pencil and mark it up exactly as you would on paper: red strikes, caret insertions, circled words, period dots.",
+      "Open any Word document in Caret on your iPad. Pick up your Apple Pencil and mark it up exactly as you would on paper: red strikes, caret insertions, circled words, period dots.",
     visual: (
       <IpadMock className="w-[240px]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/app-annotation.png"
-          alt="Penlo document with red Apple Pencil marks"
+          alt="Caret document with red Apple Pencil marks"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
         />
       </IpadMock>
@@ -27,9 +27,9 @@ const steps = [
   },
   {
     number: "02",
-    title: "Penlo reads your marks",
+    title: "Caret reads your marks",
     description:
-      "The moment you lift your Pencil, Penlo's AI scans the red ink. It recognizes strikes as deletions, carets as insertions, circles as emphasis markers, and dots as punctuation. Just like a professional copy editor.",
+      "The moment you lift your Pencil, Caret's AI scans the red ink. It recognizes strikes as deletions, carets as insertions, circles as emphasis markers, and dots as punctuation. Just like a professional copy editor.",
     visual: (
       <div className="rounded-2xl overflow-hidden border border-black/8 bg-white shadow-lg" style={{ width: 240, height: 320 }}>
         <div className="px-4 py-3 border-b border-black/5 flex items-center gap-2">
@@ -73,7 +73,7 @@ const steps = [
     number: "03",
     title: "Review the changes",
     description:
-      "Penlo shows you a clean summary of every edit it detected: what will be deleted, what will be inserted. Approve all at once or tweak individual changes before applying.",
+      "Caret shows you a clean summary of every edit it detected: what will be deleted, what will be inserted. Approve all at once or tweak individual changes before applying.",
     visual: (
       // Real app screenshot: zoomed into the right Accept/Reject cards panel, nav bar cropped
       <div
@@ -83,7 +83,7 @@ const steps = [
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/app-review.png"
-          alt="Penlo review screen showing Accept and Reject cards"
+          alt="Caret review screen showing Accept and Reject cards"
           style={{
             position: "absolute",
             width: 600,
@@ -101,7 +101,7 @@ const steps = [
     number: "04",
     title: "Export your clean .docx",
     description:
-      "Penlo writes every change back into the original Word file. Formatting, styles, track changes: all intact. Share it, email it, open it in Word. It's just a normal .docx, done.",
+      "Caret writes every change back into the original Word file. Formatting, styles, track changes: all intact. Share it, email it, open it in Word. It's just a normal .docx, done.",
     visual: (
       <div
         className="rounded-2xl border border-white/10 flex flex-col items-center justify-center gap-4 p-6"

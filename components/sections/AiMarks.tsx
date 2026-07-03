@@ -72,7 +72,7 @@ export function AiMarks() {
             <span className="text-pen">your marks.</span>
           </h2>
           <p className="mt-5 font-body text-lg text-white/50 max-w-xl mx-auto leading-relaxed">
-            Every symbol a professional copy editor uses, Penlo understands
+            Every symbol a professional copy editor uses, Caret understands
             them all. In real time.
           </p>
         </motion.div>

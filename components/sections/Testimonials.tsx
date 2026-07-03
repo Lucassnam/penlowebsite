@@ -8,7 +8,7 @@ import { WordReveal } from "@/components/ui/word-reveal";
 const testimonials = [
   {
     quote:
-      "I've been editing manuscripts by hand for twenty years. Penlo is the first tool that actually gets what I'm doing when I mark up a page.",
+      "I've been editing manuscripts by hand for twenty years. Caret is the first tool that actually gets what I'm doing when I mark up a page.",
     name: "Sarah M.",
     role: "Senior Book Editor",
     avatarColor: "#E63027",
@@ -35,7 +35,7 @@ const testimonials = [
   },
   {
     quote:
-      "My editors send me marked-up PDFs. Now I just pull them into Penlo and the changes apply themselves. Absolutely wild.",
+      "My editors send me marked-up PDFs. Now I just pull them into Caret and the changes apply themselves. Absolutely wild.",
     name: "Tom W.",
     role: "Freelance Journalist",
     avatarColor: "#3B82F6",

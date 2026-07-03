@@ -7,7 +7,7 @@ export function Footer() {
           {/* Brand */}
           <div>
             <a href="#" className="inline-block font-display font-bold text-ink text-xl mb-2">
-              Penlo<span className="text-pen">.</span>
+              Caret<span className="text-pen">.</span>
             </a>
             <p className="font-body text-xs text-ink-muted leading-relaxed max-w-[200px]">
               Mark it up like paper.<br />Keep the document.
@@ -48,7 +48,7 @@ export function Footer() {
               {[
                 { label: "Privacy Policy", href: "/privacy" },
                 { label: "Terms of Service", href: "#" },
-                { label: "Contact", href: "mailto:hello@penlo.app" },
+                { label: "Contact", href: "mailto:hello@caret.app" },
               ].map((item) => (
                 <li key={item.label}>
                   <a
@@ -66,7 +66,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-black/6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="font-body text-xs text-ink-muted">
-            © 2026 Penlo. All rights reserved.
+            © 2026 Caret. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             {/* Twitter/X */}
