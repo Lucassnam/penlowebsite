@@ -48,7 +48,7 @@ export function Footer() {
               {[
                 { label: "Privacy Policy", href: "/privacy" },
                 { label: "Terms of Service", href: "#" },
-                { label: "Contact", href: "mailto:hello@caret.app" },
+                { label: "Contact", href: "mailto:hello@usecaret.app" },
               ].map((item) => (
                 <li key={item.label}>
                   <a

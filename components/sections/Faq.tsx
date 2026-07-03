@@ -53,7 +53,7 @@ export function Faq() {
           </h2>
           <p className="mt-4 font-body text-base text-ink-muted">
             We&apos;ve got answers. If not,{" "}
-            <a href="mailto:hello@caret.app" className="text-pen underline underline-offset-2 hover:text-pen/80 transition-colors">
+            <a href="mailto:hello@usecaret.app" className="text-pen underline underline-offset-2 hover:text-pen/80 transition-colors">
               email us.
             </a>
           </p>

@@ -81,8 +81,8 @@ export default function PrivacyPage() {
               If you join the waitlist, we collect your email address so we can notify you when Caret
               launches. We will not send marketing emails unrelated to Caret. You can ask us to remove
               your email at any time by emailing{" "}
-              <a href="mailto:hello@caret.app" style={{ color: "#E63027", textDecoration: "underline" }}>
-                hello@caret.app
+              <a href="mailto:hello@usecaret.app" style={{ color: "#E63027", textDecoration: "underline" }}>
+                hello@usecaret.app
               </a>
               .
             </p>
@@ -117,8 +117,8 @@ export default function PrivacyPage() {
             <p>
               Depending on where you live, you may have the right to access, correct, or delete
               personal information we hold about you. To make such a request, email us at{" "}
-              <a href="mailto:hello@caret.app" style={{ color: "#E63027", textDecoration: "underline" }}>
-                hello@caret.app
+              <a href="mailto:hello@usecaret.app" style={{ color: "#E63027", textDecoration: "underline" }}>
+                hello@usecaret.app
               </a>
               . We will respond within 30 days.
             </p>
@@ -135,8 +135,8 @@ export default function PrivacyPage() {
           <Section title="Contact">
             <p>
               Questions about this policy?{" "}
-              <a href="mailto:hello@caret.app" style={{ color: "#E63027", textDecoration: "underline" }}>
-                hello@caret.app
+              <a href="mailto:hello@usecaret.app" style={{ color: "#E63027", textDecoration: "underline" }}>
+                hello@usecaret.app
               </a>
             </p>
           </Section>
