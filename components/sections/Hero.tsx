@@ -29,7 +29,6 @@ export function Hero() {
             <h1 className="font-display text-5xl md:text-6xl lg:text-[4.5rem] font-bold text-white leading-[1.05] tracking-tight mb-6">
               <span className="block">
                 <WordReveal text="The benefits of" delay={0.1} />
-                {" "}
                 <span className="relative inline-block">
                   <WordReveal text="paper." delay={0.3} />
                   <PenMark
@@ -88,7 +87,7 @@ export function Hero() {
 
             {/* Social trust strip */}
             <motion.div
-              className="flex items-center gap-3 text-white/30 text-xs font-body"
+              className="flex items-center gap-3 text-white/45 text-xs font-body"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.0, duration: 0.6 }}

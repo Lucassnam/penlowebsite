@@ -126,14 +126,6 @@ body::after {
 }
 .float-anim { animation: float 5s ease-in-out infinite; }
 
-/* ── Marquee ─────────────────────────────────────────────────── */
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-.marquee-track { animation: marquee 28s linear infinite; }
-.marquee-track:hover { animation-play-state: paused; }
-
 /* ── Animated gradient border (rotating) ────────────────────── */
 @keyframes border-spin {
   from { --angle: 0deg; }

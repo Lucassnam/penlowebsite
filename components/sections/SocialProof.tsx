@@ -11,13 +11,6 @@ const stats = [
   { value: 0, suffix: "", label: "paper wasted. Ever.", decimals: 0, prefix: "Zero" },
 ];
 
-const press = [
-  "Product Hunt", "The Verge", "Hacker News", "AppAdvice",
-  "9to5Mac", "MacStories", "TechCrunch", "Product Hunt",
-  "The Verge", "Hacker News", "AppAdvice", "9to5Mac",
-  "MacStories", "TechCrunch",
-];
-
 export function SocialProof() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -55,7 +48,7 @@ export function SocialProof() {
                   />
                 </p>
               )}
-              <p className="font-body text-sm text-white/35">{stat.label}</p>
+              <p className="font-body text-sm text-white/55">{stat.label}</p>
 
             </motion.div>
           ))}
@@ -72,36 +65,10 @@ export function SocialProof() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7, delay: 0.35 }}
       >
-        <p className="font-display text-xl md:text-2xl text-white/40 italic leading-relaxed">
+        <p className="font-display text-xl md:text-2xl text-white/55 italic leading-relaxed">
           "The natural feel of paper, at the{" "}
           <span className="not-italic font-semibold text-white/80">efficiency of digital.</span>"
         </p>
-      </motion.div>
-
-      {/* Marquee */}
-      <motion.div
-        className="relative"
-        initial={{ opacity: 0 }}
-        animate={inView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.8, delay: 0.5 }}
-      >
-        <div className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to right, #0A0A10, transparent)" }} />
-        <div className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to left, #0A0A10, transparent)" }} />
-
-        <div className="flex overflow-hidden">
-          <div className="marquee-track flex shrink-0 gap-12 items-center">
-            {press.map((name, i) => (
-              <span
-                key={i}
-                className="font-body text-xs text-white/18 font-semibold tracking-[0.2em] uppercase whitespace-nowrap select-none"
-              >
-                {name}
-              </span>
-            ))}
-          </div>
-        </div>
       </motion.div>
     </section>
   );

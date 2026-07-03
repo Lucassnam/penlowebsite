@@ -64,7 +64,7 @@ export function DocStack() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-16 md:py-24 bg-paper" ref={ref} id="how-it-works">
+    <section className="py-16 md:py-24 bg-paper" ref={ref} id="any-document">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Text */}

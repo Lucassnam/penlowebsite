@@ -47,12 +47,12 @@ export function Nav() {
         >
           Caret
           <svg
-            className="inline-block w-[0.5em] h-[0.5em] ml-0.5 align-baseline text-pen"
+            className="inline-block w-[0.6em] h-[0.6em] ml-[0.04em] translate-y-[0.06em] text-pen"
             viewBox="0 0 24 24"
             fill="none"
             aria-hidden
           >
-            <path d="M4 17 L12 7 L20 17" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M4 16 L12 8 L20 16" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </a>
 

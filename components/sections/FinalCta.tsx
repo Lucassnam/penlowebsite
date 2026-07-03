@@ -189,8 +189,8 @@ export function FinalCta() {
           )}
 
           <div className="mt-6 flex flex-col items-center gap-2">
-            <p className="text-xs font-body text-white/25">No spam, ever. Unsubscribe any time.</p>
-            <div className="flex items-center gap-4 text-[10px] font-body text-white/20">
+            <p className="text-xs font-body text-white/45">No spam, ever. Unsubscribe any time.</p>
+            <div className="flex items-center gap-4 text-[10px] font-body text-white/40">
               {["40% launch discount", "First in line", "Cancel anytime"].map((text) => (
                 <span key={text} className="flex items-center gap-1">
                   <svg width="8" height="8" viewBox="0 0 12 12" fill="none" aria-hidden>
