@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useInView } from "framer-motion";
-import { animate } from "framer-motion";
+import { useInView, animate } from "framer-motion";
 
 interface CounterProps {
   from?: number;
@@ -24,30 +23,24 @@ export function Counter({
   decimals = 0,
 }: CounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inViewRef = useRef<HTMLSpanElement>(null);
-  const inView = useInView(inViewRef, { once: true, margin: "-60px" });
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const [value, setValue] = useState(from);
 
   useEffect(() => {
-    if (!inView || hasAnimated) return;
-    setHasAnimated(true);
-    const el = ref.current;
-    if (!el) return;
-
+    if (!inView) return;
     const controls = animate(from, to, {
       duration,
       ease: [0.22, 1, 0.36, 1],
-      onUpdate(value) {
-        el.textContent = prefix + value.toFixed(decimals) + suffix;
-      },
+      onUpdate: (v) => setValue(v),
     });
-
     return () => controls.stop();
-  }, [inView, from, to, duration, suffix, prefix, decimals, hasAnimated]);
+  }, [inView, from, to, duration]);
 
   return (
-    <span ref={inViewRef} className={className}>
-      <span ref={ref}>{prefix}{from.toFixed(decimals)}{suffix}</span>
+    <span ref={ref} className={className}>
+      {prefix}
+      {value.toFixed(decimals)}
+      {suffix}
     </span>
   );
 }

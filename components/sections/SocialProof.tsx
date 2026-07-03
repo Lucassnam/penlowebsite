@@ -6,7 +6,7 @@ import { Counter } from "@/components/ui/counter";
 import { AuroraText } from "@/components/ui/aurora-text";
 
 const stats = [
-  { value: 4, suffix: "", label: "types of pen marks it reads", decimals: 0 },
+  { value: 12, suffix: "+", label: "types of pen marks it reads", decimals: 0 },
   { value: 3.2, suffix: "s", label: "avg. AI processing", decimals: 1 },
   { value: 0, suffix: "", label: "paper wasted. Ever.", decimals: 0, prefix: "Zero" },
 ];
