@@ -6,8 +6,8 @@ import { Counter } from "@/components/ui/counter";
 import { AuroraText } from "@/components/ui/aurora-text";
 
 const stats = [
-  { value: 4, suffix: " mark types", label: "AI understands instantly", decimals: 0 },
-  { value: 2.7, suffix: "s", label: "avg. AI processing", decimals: 1 },
+  { value: 4, suffix: "", label: "types of pen marks it reads", decimals: 0 },
+  { value: 3.2, suffix: "s", label: "avg. AI processing", decimals: 1 },
   { value: 0, suffix: "", label: "paper wasted. Ever.", decimals: 0, prefix: "Zero" },
 ];
 
@@ -73,8 +73,8 @@ export function SocialProof() {
         transition={{ duration: 0.7, delay: 0.35 }}
       >
         <p className="font-display text-xl md:text-2xl text-white/40 italic leading-relaxed">
-          "Built for people who still think{" "}
-          <span className="not-italic font-semibold text-white/80">in pen.</span>"
+          "The natural feel of paper, at the{" "}
+          <span className="not-italic font-semibold text-white/80">efficiency of digital.</span>"
         </p>
       </motion.div>
 

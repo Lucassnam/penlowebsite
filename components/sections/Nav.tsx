@@ -46,7 +46,14 @@ export function Nav() {
           className="font-display text-xl font-bold tracking-tight text-white z-10"
         >
           Caret
-          <span className="text-pen">.</span>
+          <svg
+            className="inline-block w-[0.5em] h-[0.5em] ml-0.5 align-baseline text-pen"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden
+          >
+            <path d="M4 17 L12 7 L20 17" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </a>
 
         <ul className="hidden md:flex items-center gap-8">
