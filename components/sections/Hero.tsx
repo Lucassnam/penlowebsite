@@ -64,13 +64,7 @@ export function Hero() {
               transition={{ delay: 0.85, duration: 0.6, ease: "easeOut" }}
             >
               <Magnetic strength={0.25}>
-                <TahoeButton
-                  href="#waitlist"
-                  variant="pen"
-                  size="lg"
-                  className="gradient-border shine-border"
-                  style={{ "--bg-color": "transparent" } as React.CSSProperties}
-                >
+                <TahoeButton href="#waitlist" variant="pen" size="lg">
                   Get early access
                   <svg className="w-4 h-4 ml-1" viewBox="0 0 16 16" fill="none" aria-hidden>
                     <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -92,18 +86,11 @@ export function Hero() {
               animate={{ opacity: 1 }}
               transition={{ delay: 1.0, duration: 0.6 }}
             >
-              <div className="flex -space-x-2">
-                {["#E63027", "#3B82F6", "#10B981", "#F59E0B"].map((color, i) => (
-                  <div
-                    key={i}
-                    className="w-6 h-6 rounded-full ring-2 ring-[#0A0A10] flex items-center justify-center text-[8px] font-bold text-white"
-                    style={{ background: color }}
-                  >
-                    {["S", "J", "P", "T"][i]}
-                  </div>
-                ))}
-              </div>
-              <span>Loved by editors, lawyers &amp; writers</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d="M9 12l2 2 4-4" stroke="#E63027" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" stroke="#E63027" strokeWidth="2"/>
+              </svg>
+              <span>Built for editors, lawyers &amp; writers</span>
             </motion.div>
           </motion.div>
 
@@ -154,7 +141,7 @@ export function Hero() {
                   <p className="text-[9px] font-body text-white/40 mt-0.5 leading-none">edits ready to apply</p>
                 </div>
                 <div
-                  className="w-1.5 h-1.5 rounded-full bg-green-400 ml-1 pulse-glow"
+                  className="w-1.5 h-1.5 rounded-full bg-green-400 ml-1"
                   style={{ boxShadow: "0 0 6px rgba(74,222,128,0.9)" }}
                 />
               </motion.div>

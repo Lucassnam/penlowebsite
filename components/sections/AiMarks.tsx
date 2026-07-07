@@ -13,8 +13,6 @@ const marks = [
     strikeWord: "the",
     after: "The document",
     trackedEdit: "Delete: 'the'",
-    color: "rgba(230,48,39,0.12)",
-    border: "rgba(230,48,39,0.2)",
   },
   {
     symbol: "∧",
@@ -24,8 +22,6 @@ const marks = [
     insertWord: "meet",
     after: "meet deadline",
     trackedEdit: "Insert: 'meet' before 'deadline'",
-    color: "rgba(16,185,129,0.1)",
-    border: "rgba(16,185,129,0.2)",
   },
   {
     symbol: "○",
@@ -35,8 +31,6 @@ const marks = [
     circled: true,
     after: "[flagged for review]",
     trackedEdit: "Flag: 'important clause'",
-    color: "rgba(245,158,11,0.1)",
-    border: "rgba(245,158,11,0.2)",
   },
   {
     symbol: "•",
@@ -46,8 +40,6 @@ const marks = [
     after: "See you then.",
     addedPeriod: true,
     trackedEdit: "Insert: '.' after 'then'",
-    color: "rgba(99,102,241,0.1)",
-    border: "rgba(99,102,241,0.2)",
   },
 ];
 
@@ -111,10 +103,7 @@ function MarkCard({
       {/* Mark symbol */}
       <div
         className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-        style={{
-          background: mark.color,
-          border: `1px solid ${mark.border}`,
-        }}
+        style={{ background: "rgba(255,255,255,0.06)" }}
       >
         <span className="font-display text-pen font-bold text-xl">{mark.symbol}</span>
       </div>
@@ -140,14 +129,12 @@ function MarkCard({
           </div>
           <div className="flex items-center gap-0.5">
             <span className="text-[9px] text-white/20 mr-1">→</span>
-            <span className="text-[10px] font-body text-green-400 font-medium">{mark.after}</span>
+            <span className="text-[10px] font-body text-white/85 font-medium">{mark.after}</span>
           </div>
         </div>
-        <div
-          className="rounded-lg px-2.5 py-1.5 text-[9px] font-body font-medium"
-          style={{ background: "rgba(230,48,39,0.08)", color: "rgba(230,48,39,0.7)" }}
-        >
-          Track change: {mark.trackedEdit}
+        <div className="pt-2 border-t border-white/10 flex items-baseline gap-1.5 text-[10px] font-body">
+          <span className="text-white/35">Track change</span>
+          <span className="text-[#FF6B5B] font-medium">{mark.trackedEdit}</span>
         </div>
       </div>
     </motion.div>

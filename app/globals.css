@@ -19,9 +19,15 @@
   --foreground: #1A1A1A;
 }
 
-/* ── Hide native cursor on desktop ─────────────────────────── */
-@media (hover: hover) and (pointer: fine) {
-  *, *::before, *::after { cursor: none !important; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* ── Keyboard focus ─────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-pen);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 body {
@@ -44,31 +50,6 @@ body {
   z-index: 0;
 }
 .paper-texture > * { position: relative; z-index: 1; }
-
-/* ── Cinematic film grain (global) ─────────────────────────── */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9990;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.04'/%3E%3C/svg%3E");
-  opacity: 0.45;
-  animation: grain-shift 0.6s steps(1) infinite;
-}
-
-@keyframes grain-shift {
-  0%,100% { transform: translate(0,0); }
-  10%      { transform: translate(-2%,-3%); }
-  20%      { transform: translate(3%,2%); }
-  30%      { transform: translate(-1%,4%); }
-  40%      { transform: translate(2%,-2%); }
-  50%      { transform: translate(-3%,1%); }
-  60%      { transform: translate(1%,3%); }
-  70%      { transform: translate(3%,-1%); }
-  80%      { transform: translate(-2%,2%); }
-  90%      { transform: translate(1%,-3%); }
-}
 
 /* ── Glass utilities ─────────────────────────────────────────── */
 .glass-card {
@@ -111,7 +92,7 @@ body::after {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: aurora-shift 4s linear infinite;
+  animation: aurora-shift 8s linear infinite;
 }
 
 @keyframes aurora-shift {
@@ -126,58 +107,9 @@ body::after {
 }
 .float-anim { animation: float 5s ease-in-out infinite; }
 
-/* ── Animated gradient border (rotating) ────────────────────── */
-@keyframes border-spin {
-  from { --angle: 0deg; }
-  to   { --angle: 360deg; }
-}
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-.gradient-border {
-  border: 1px solid transparent;
-  background:
-    linear-gradient(var(--bg-color, #0A0A10), var(--bg-color, #0A0A10)) padding-box,
-    conic-gradient(from var(--angle), #E63027, #FF6B5B, #ffffff22, #E63027) border-box;
-  animation: border-spin 4s linear infinite;
-}
-
-/* ── Shine animation ─────────────────────────────────────────── */
-@keyframes shine {
-  from { background-position: -200% center; }
-  to   { background-position: 200% center; }
-}
-.shine-border {
-  position: relative;
-}
-.shine-border::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.45) 50%, transparent 100%);
-  background-size: 200% 100%;
-  animation: shine 3s linear infinite;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
-/* ── Pulse glow ──────────────────────────────────────────────── */
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(230, 48, 39, 0); }
-  50%       { box-shadow: 0 0 20px 6px rgba(230, 48, 39, 0.25); }
-}
-.pulse-glow { animation: pulse-glow 2.5s ease-in-out infinite; }
-
 /* ── Reduced motion ──────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after, body::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

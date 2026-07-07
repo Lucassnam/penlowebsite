@@ -19,7 +19,6 @@ export function SocialProof() {
     <section
       className="py-16 md:py-20 border-t border-white/5 overflow-hidden"
       style={{ background: "#0A0A10" }}
-      id="features"
       ref={ref}
     >
       {/* Stats */}

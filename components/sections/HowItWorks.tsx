@@ -4,7 +4,6 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { IpadMock } from "@/components/pen/IpadMock";
 import { WordReveal } from "@/components/ui/word-reveal";
-import { TextScramble } from "@/components/ui/text-scramble";
 
 const steps = [
   {
@@ -38,14 +37,14 @@ const steps = [
         </div>
         <div className="p-4 space-y-3">
           {[
-            { mark: "——", label: "Delete word", color: "text-pen", bg: "bg-pen-soft" },
-            { mark: "∧", label: "Insert text", color: "text-green-600", bg: "bg-green-50" },
-            { mark: "○", label: "Flag emphasis", color: "text-amber-600", bg: "bg-amber-50" },
-            { mark: "•", label: "Add period", color: "text-blue-600", bg: "bg-blue-50" },
+            { mark: "——", label: "Delete word" },
+            { mark: "∧", label: "Insert text" },
+            { mark: "○", label: "Flag emphasis" },
+            { mark: "•", label: "Add period" },
           ].map((item) => (
             <div key={item.label} className="flex items-center gap-3">
-              <div className={`w-8 h-8 rounded-lg ${item.bg} flex items-center justify-center flex-shrink-0`}>
-                <span className={`font-body ${item.color} font-bold text-base`}>{item.mark}</span>
+              <div className="w-8 h-8 rounded-lg bg-black/5 flex items-center justify-center flex-shrink-0">
+                <span className="font-body text-pen font-bold text-base">{item.mark}</span>
               </div>
               <div>
                 <span className="font-body text-xs text-ink font-medium">{item.label}</span>
@@ -66,7 +65,7 @@ const steps = [
         </div>
       </div>
     ),
-    color: "#8B5CF6",
+    color: "#E63027",
     imageRight: true,
   },
   {
@@ -94,7 +93,7 @@ const steps = [
         />
       </div>
     ),
-    color: "#10B981",
+    color: "#E63027",
     imageRight: false,
   },
   {
@@ -107,11 +106,11 @@ const steps = [
         className="rounded-2xl border border-white/10 flex flex-col items-center justify-center gap-4 p-6"
         style={{ background: "#111115", width: 240, height: 320 }}
       >
-        <div className="w-14 h-14 rounded-2xl bg-blue-500/15 border border-blue-500/20 flex items-center justify-center">
+        <div className="w-14 h-14 rounded-2xl bg-white/8 flex items-center justify-center">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
-            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="#3B82F6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="rgba(59,130,246,0.1)"/>
-            <path d="M14 2v6h6" stroke="#3B82F6" strokeWidth="1.5" strokeLinecap="round"/>
-            <path d="M8 12h8M8 16h6" stroke="#3B82F6" strokeWidth="1.5" strokeLinecap="round"/>
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="#E63027" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="rgba(230,48,39,0.08)"/>
+            <path d="M14 2v6h6" stroke="#E63027" strokeWidth="1.5" strokeLinecap="round"/>
+            <path d="M8 12h8M8 16h6" stroke="#E63027" strokeWidth="1.5" strokeLinecap="round"/>
           </svg>
         </div>
         <div className="text-center">
@@ -119,17 +118,16 @@ const steps = [
           <p className="text-white/40 text-[10px] font-body mt-1">All 3 edits applied</p>
         </div>
         {["Formatting intact", "Original preserved", "Ready to share"].map((text, i) => (
-          <div key={i} className="flex items-center gap-2 text-[10px] font-body" style={{ color: "#10B981" }}>
+          <div key={i} className="flex items-center gap-2 text-[10px] font-body text-white/60">
             <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden>
-              <circle cx="6" cy="6" r="5" fill="rgba(16,185,129,0.15)" stroke="rgba(16,185,129,0.3)" strokeWidth="1"/>
-              <path d="M3.5 6l2 2 3-3" stroke="#10B981" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M2.5 6l2.5 2.5 4.5-4.5" stroke="#FF6B5B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
             {text}
           </div>
         ))}
       </div>
     ),
-    color: "#3B82F6",
+    color: "#E63027",
     imageRight: true,
   },
 ];
@@ -221,7 +219,7 @@ function Step({
           {step.number}
         </span>
         <h3 className="font-display text-3xl font-bold text-ink leading-tight -mt-2">
-          <TextScramble text={step.title} trigger="inview" />
+          {step.title}
         </h3>
         <p className="font-body text-base text-ink-muted leading-relaxed">
           {step.description}

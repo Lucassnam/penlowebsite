@@ -19,42 +19,39 @@ const features = [
       "Styles, fonts, headers, tracked changes: every detail survives untouched. Your document looks exactly as you intended, every time.",
     size: "large",
     dark: false,
-    accent: "#E63027",
     tagline: "Fonts, styles, tracked changes, all preserved",
   },
   {
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
-        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M14 2v6h6M8 13h8M8 17h5" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round"/>
+        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="#E63027" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M14 2v6h6M8 13h8M8 17h5" stroke="#E63027" strokeWidth="2" strokeLinecap="round"/>
       </svg>
     ),
     title: "Real .docx output",
     description: "Export a standard Word file. Open it in Word, Google Docs, Pages. It just works.",
     size: "small",
     dark: true,
-    accent: "#3B82F6",
     tagline: "",
   },
   {
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
-        <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="#06B6D4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="#E63027" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
     title: "Instant recognition",
     description: "Marks are detected the moment you lift the Pencil. No tap, no button.",
     size: "small",
     dark: true,
-    accent: "#06B6D4",
     tagline: "",
   },
   {
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
-        <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9l-7-7z" stroke="#F59E0B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M13 2v7h7" stroke="#F59E0B" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M9 17l1.5-4.5L12 15l1.5-4.5L15 17" stroke="#F59E0B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9l-7-7z" stroke="#E63027" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M13 2v7h7" stroke="#E63027" strokeWidth="2" strokeLinecap="round"/>
+        <path d="M9 17l1.5-4.5L12 15l1.5-4.5L15 17" stroke="#E63027" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
     title: "Works on any .docx",
@@ -62,21 +59,19 @@ const features = [
       "Contracts, manuscripts, essays, reports, scripts. If Word opens it, Caret marks it. No template lock-in.",
     size: "large",
     dark: false,
-    accent: "#F59E0B",
     tagline: "Theses · Contracts · Articles · Scripts · Reports",
   },
   {
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
-        <path d="M12 22V12M12 12L8 16M12 12l4 4" stroke="#8B5CF6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M20 16.7A4 4 0 0017 9h-1.26A8 8 0 104 16.3" stroke="#8B5CF6" strokeWidth="2" strokeLinecap="round"/>
+        <path d="M12 22V12M12 12L8 16M12 12l4 4" stroke="#E63027" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M20 16.7A4 4 0 0017 9h-1.26A8 8 0 104 16.3" stroke="#E63027" strokeWidth="2" strokeLinecap="round"/>
       </svg>
     ),
     title: "Original never touched",
     description: "Edits go into a new copy. Your source file stays exactly as it was, always safe and intact.",
     size: "large",
     dark: false,
-    accent: "#8B5CF6",
     tagline: "Non-destructive by design",
   },
 ];
@@ -86,7 +81,7 @@ export function FeatureGrid() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-16 md:py-24 bg-paper" ref={ref}>
+    <section className="py-16 md:py-24 bg-paper" ref={ref} id="features">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           className="text-center mb-14"
@@ -111,8 +106,8 @@ export function FeatureGrid() {
           {features.map((feature, i) => {
             const isLarge = feature.size === "large";
             const spotlightColor = feature.dark
-              ? `${feature.accent}18`
-              : `${feature.accent}12`;
+              ? "rgba(255,255,255,0.07)"
+              : "rgba(230,48,39,0.05)";
 
             return (
               <motion.div
@@ -130,11 +125,9 @@ export function FeatureGrid() {
                     spotlightColor={spotlightColor}
                   >
                     <motion.div
-                      className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                      style={{
-                        background: `${feature.accent}15`,
-                        border: `1px solid ${feature.accent}25`,
-                      }}
+                      className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                        feature.dark ? "bg-white/6" : "bg-black/5"
+                      }`}
                       whileHover={{ rotate: [0, -8, 8, 0], scale: 1.1 }}
                       transition={{ duration: 0.4 }}
                     >
@@ -159,26 +152,15 @@ export function FeatureGrid() {
                     </div>
 
                     {isLarge && feature.tagline && (
-                      <div
-                        className="mt-2 rounded-xl px-4 py-3 flex items-center gap-2"
-                        style={{
-                          background: `${feature.accent}08`,
-                          border: `1px solid ${feature.accent}15`,
-                        }}
+                      <p
+                        className={`mt-2 pt-4 border-t text-xs font-body font-medium tracking-wide ${
+                          feature.dark
+                            ? "border-white/10 text-white/50"
+                            : "border-black/6 text-ink-muted"
+                        }`}
                       >
-                        <motion.div
-                          className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                          style={{ background: feature.accent }}
-                          animate={{ scale: [1, 1.4, 1] }}
-                          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                        />
-                        <span
-                          className="text-xs font-body font-medium"
-                          style={{ color: feature.accent }}
-                        >
-                          {feature.tagline}
-                        </span>
-                      </div>
+                        {feature.tagline}
+                      </p>
                     )}
                   </SpotlightCard>
                 </TiltCard>

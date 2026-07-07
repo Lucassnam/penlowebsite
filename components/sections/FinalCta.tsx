@@ -30,7 +30,7 @@ function Particle({ x, y, color }: { x: number; y: number; color: string }) {
   );
 }
 
-const PARTICLE_COLORS = ["#E63027", "#FF6B5B", "#ffffff", "#F59E0B", "#10B981", "#3B82F6"];
+const PARTICLE_COLORS = ["#E63027", "#FF6B5B", "#FF9B8B", "#FBFAF7"];
 
 export function FinalCta() {
   const ref = useRef<HTMLDivElement>(null);
