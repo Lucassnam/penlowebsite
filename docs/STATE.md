@@ -1,10 +1,10 @@
 # STATE
 
 ## Goal
-Senior-level UX redesign pass on the Caret landing page: fix the AI-looking colored/tinted boxes with colored borders, enforce a single-accent design system, make it "10/10 UX".
+Rewrite landing-page copy to the user's dictated positioning: paper's cognitive benefits without retyping friction, why-paper reasoning, user-in-control framing, benefit-led feature captions. (Previous goal — single-accent UX redesign — completed 2026-07-07.)
 
 ## Now
-Redesign complete and verified. Awaiting user review; nothing committed (user has not asked for a commit).
+Copy rewrite complete and verified (build exit 0; new copy confirmed in rendered HTML on localhost:4321). Awaiting user review; nothing committed (user has not asked for a commit).
 
 ## Next
 1. (optional, needs user approval) delete stray /Users/coolio_999/node_modules to fix npm scripts globally
@@ -12,6 +12,7 @@ Redesign complete and verified. Awaiting user review; nothing committed (user ha
 3. (pre-launch) replace invented testimonials with real quotes; fill footer social/Terms links
 
 ## Constraints
+- User: "the 4 steps, it's good" — do not change HowItWorks step content (2026-07-13)
 - User: fix "the beige color with the boxes, the colored boxes with red lining around them, that just looks really AI"
 - User: "make careful design choices"; "do the whole thing"; ship finished product, not a plan
 - Global rules: never remove auth/required fields; report success only beside real exit codes
@@ -31,6 +32,7 @@ Redesign complete and verified. Awaiting user review; nothing committed (user ha
 - Full design audit: docs/design-review-2026-07-07.md
 
 ## Done
+- Copy rewrite (Hero, Problem, DocStack, FeatureGrid) per dictated investor-pitch positioning — RESULT: tsc exit 0, build exit 0, all new strings and zero old strings confirmed in curl'd localhost:4321 HTML (2026-07-13)
 - Baseline build — RESULT: pass, EXIT=0, all 9 static pages generated (2026-07-07)
 - Full single-accent redesign (11 files) — RESULT: final build EXIT=0; desktop 1440px + mobile 390px full-page screenshots verified; #features anchor confirmed on FeatureGrid; cards probe at computed opacity 1 with zero console errors (2026-07-07)
 - GradientBridge smear bands removed from app/page.tsx — RESULT: hard section cuts verified in screenshots (2026-07-07)

@@ -28,7 +28,7 @@ export function Hero() {
             {/* Headline */}
             <h1 className="font-display text-5xl md:text-6xl lg:text-[4.5rem] font-bold text-white leading-[1.05] tracking-tight mb-6">
               <span className="block">
-                <WordReveal text="The benefits of" delay={0.1} />
+                <WordReveal text="All the benefits of" delay={0.1} />
                 <span className="relative inline-block">
                   <WordReveal text="paper." delay={0.3} />
                   <PenMark
@@ -39,7 +39,7 @@ export function Hero() {
                 </span>
               </span>
               <span className="text-white/50">
-                <WordReveal text="The ease of Caret." delay={0.5} />
+                <WordReveal text="None of the friction." delay={0.5} />
               </span>
             </h1>
 
@@ -50,10 +50,11 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.7, ease: "easeOut" }}
             >
-              All the benefits of marking up paper with your Apple Pencil,{" "}
-              <span className="text-white/80 font-medium">with none of the friction</span>{" "}
-              of retyping every red-pen edit. Caret reads your marks and applies
-              them automatically.
+              Caret is{" "}
+              <span className="text-white/80 font-medium">red-pen editing without the retyping</span>.
+              Mark up any document with your Apple Pencil exactly like you would
+              on paper — Caret reads your marks and writes them straight into
+              the original file.
             </motion.p>
 
             {/* CTAs */}

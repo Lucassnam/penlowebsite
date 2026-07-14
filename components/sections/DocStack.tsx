@@ -76,18 +76,20 @@ export function DocStack() {
           >
             <div>
               <p className="text-xs uppercase tracking-widest font-body text-ink-muted font-semibold mb-3">
-                Any document
+                You approve everything
               </p>
               <h2 className="font-display text-4xl md:text-5xl font-bold text-ink leading-tight">
-                Your documents,
+                You&apos;re fully
                 <br />
-                <span className="text-ink-muted">marked and done.</span>
+                <span className="text-ink-muted">in control.</span>
               </h2>
             </div>
             <p className="font-body text-base text-ink-muted leading-relaxed">
-              Theses, contracts, articles, scripts. If it's a{" "}
-              <code className="text-ink font-mono text-sm bg-black/5 px-1.5 py-0.5 rounded">.docx</code>,{" "}
-              Caret handles it. Every mark you make in red gets applied exactly where you intended.
+              Caret never changes a word without your sign-off. Every mark
+              becomes a proposed edit you approve or reject — one by one, or all
+              at once. The AI does the retyping to make your life easier; the
+              red pen stays in your hand. And it works on any{" "}
+              <code className="text-ink font-mono text-sm bg-black/5 px-1.5 py-0.5 rounded">.docx</code>:
             </p>
 
             {/* Doc type chips */}

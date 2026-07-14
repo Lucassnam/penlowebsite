@@ -8,7 +8,7 @@ const oldWayPains = [
   "Print the document",
   "Mark it up with a red pen",
   "Sit back down at the keyboard",
-  "Retype every single correction",
+  "Manually retype every change into Word",
   "Hope you didn't miss any",
 ];
 
@@ -29,7 +29,7 @@ export function Problem() {
           >
             <div>
               <p className="text-xs uppercase tracking-widest font-body text-ink-muted font-semibold mb-4">
-                Paper
+                Why paper?
               </p>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-ink leading-tight">
                 Paper is still{" "}
@@ -43,10 +43,15 @@ export function Problem() {
                 </span>
               </h2>
               <p className="mt-4 font-body text-base text-ink-muted leading-relaxed">
-                You print it out, mark it up with a red pen. Every awkward phrase
-                struck through, every missing word caret-inserted, every period
-                dotted in. It feels natural. It{" "}
-                <em>is</em> the best way to edit.
+                Editors, lawyers, teachers — the people who edit for a living —
+                still print documents and mark them up by hand. Not out of
+                habit: you genuinely catch more errors on paper. It&apos;s
+                tactile, studies show handwriting improves memory and cognition,
+                and every word stays <em>your</em> call — real editing, not
+                prompting an AI to rewrite for you.
+              </p>
+              <p className="mt-3 font-body text-base text-ink-muted leading-relaxed">
+                The problem isn&apos;t the paper. It&apos;s what happens next:
               </p>
             </div>
 
@@ -84,13 +89,15 @@ export function Problem() {
                 Same marks. On your iPad.
               </h2>
               <p className="mt-4 font-body text-base text-ink-muted leading-relaxed">
-                Caret reads every Apple Pencil mark on your iPad screen: the
-                strikes, carets, circles, periods. It applies them directly into
-                your <code className="text-ink font-mono text-sm bg-black/5 px-1.5 py-0.5 rounded">.docx</code>.
+                Strike a word, caret in a new one, dot in a period — exactly the
+                marks you&apos;d make with a red pen. Caret reads them and writes
+                the edits straight back into your{" "}
+                <code className="text-ink font-mono text-sm bg-black/5 px-1.5 py-0.5 rounded">.docx</code>,
+                formatting intact.
               </p>
               <p className="mt-3 font-body text-base text-ink-muted leading-relaxed">
-                Original formatting stays intact. You never touch the keyboard.
-                The document is done the moment you cap your pen.
+                No printing. No sitting back down to retype. Mark it up, cap
+                your pen — the document&apos;s done.
               </p>
             </div>
 

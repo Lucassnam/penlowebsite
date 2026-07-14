@@ -16,7 +16,7 @@ const features = [
     ),
     title: "Keeps your formatting",
     description:
-      "Styles, fonts, headers, tracked changes: every detail survives untouched. Your document looks exactly as you intended, every time.",
+      "Hand-retyping edits is how styles, numbering, and headers get broken. Caret writes changes into the file the way Word does — every detail survives untouched.",
     size: "large",
     dark: false,
     tagline: "Fonts, styles, tracked changes, all preserved",
@@ -29,7 +29,7 @@ const features = [
       </svg>
     ),
     title: "Real .docx output",
-    description: "Export a standard Word file. Open it in Word, Google Docs, Pages. It just works.",
+    description: "No proprietary format, no lock-in. You get a standard Word file that opens anywhere: Word, Google Docs, Pages.",
     size: "small",
     dark: true,
     tagline: "",
@@ -41,7 +41,7 @@ const features = [
       </svg>
     ),
     title: "Instant recognition",
-    description: "Marks are detected the moment you lift the Pencil. No tap, no button.",
+    description: "Caret reads each mark the moment you lift your Pencil. No tap, no button, no waiting.",
     size: "small",
     dark: true,
     tagline: "",
@@ -56,7 +56,7 @@ const features = [
     ),
     title: "Works on any .docx",
     description:
-      "Contracts, manuscripts, essays, reports, scripts. If Word opens it, Caret marks it. No template lock-in.",
+      "Contracts, manuscripts, essays, reports, scripts. If Word opens it, Caret marks it — no special template, no reformatting your work to fit the tool.",
     size: "large",
     dark: false,
     tagline: "Theses · Contracts · Articles · Scripts · Reports",
@@ -69,7 +69,7 @@ const features = [
       </svg>
     ),
     title: "Original never touched",
-    description: "Edits go into a new copy. Your source file stays exactly as it was, always safe and intact.",
+    description: "Every edit lands in a fresh copy. Your source file stays exactly as it was — you can't lose work you didn't approve.",
     size: "large",
     dark: false,
     tagline: "Non-destructive by design",
@@ -93,10 +93,10 @@ export function FeatureGrid() {
             Features
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-ink leading-tight">
-            <WordReveal text="Everything you need." />
+            <WordReveal text="Built for people" />
             <br />
             <span className="text-ink-muted">
-              <WordReveal text="Nothing you don't." delay={0.25} />
+              <WordReveal text="who edit for a living." delay={0.25} />
             </span>
           </h2>
         </motion.div>
