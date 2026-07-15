@@ -1,6 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { Caveat } from "next/font/google";
+
+const caveat = Caveat({ subsets: ["latin"], weight: "600" });
 
 /**
  * Draggable before/after document. Left of the handle: the document with red
@@ -135,13 +138,13 @@ function DocBefore() {
         </span>{" "}
         report reveals surprising data about reading habits in the digital age.
         Researchers found that readers retain more
-        <span className="relative inline-block w-4 align-baseline">
-          <svg className="absolute left-1/2 -translate-x-1/2 bottom-[-2px] w-3.5 h-3.5 pointer-events-none" viewBox="0 0 32 32" aria-hidden>
+        <span className="relative inline-block w-5 align-baseline">
+          <svg className="absolute left-1/2 -translate-x-1/2 bottom-[-3px] w-3.5 h-3.5 pointer-events-none" viewBox="0 0 32 32" aria-hidden>
             <path d="M4,28 L16,10 L28,28" stroke="#E63027" strokeWidth="3.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           <span
-            className="absolute left-1/2 -translate-x-1/2 bottom-[1.35em] text-pen text-[13px] italic whitespace-nowrap"
-            style={{ transform: "translateX(-50%) rotate(-2deg)", fontFamily: "cursive" }}
+            className={`${caveat.className} absolute left-1/2 bottom-[1.02em] text-pen text-[19px] leading-none whitespace-nowrap`}
+            style={{ transform: "translateX(-50%) rotate(-3deg)" }}
           >
             information
           </span>

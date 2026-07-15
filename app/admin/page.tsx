@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { getSupabaseAdminClient } from "@/lib/supabase-admin";
+import { isBlocked, recordFailure } from "@/lib/admin-rate-limit";
 
 export const metadata: Metadata = {
   title: "Caret Admin",
@@ -131,8 +133,24 @@ export default async function AdminPage({
 }) {
   const { key } = await searchParams;
   const password = process.env.ADMIN_PASSWORD;
+  const hdrs = await headers();
+  const ip =
+    hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    hdrs.get("x-real-ip") ||
+    "unknown";
+
+  if (isBlocked(ip)) {
+    return (
+      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
+        <p className="font-body text-white/50 text-sm">
+          Too many failed attempts. Try again in an hour.
+        </p>
+      </div>
+    );
+  }
 
   if (!password || key !== password) {
+    if (typeof key === "string" && key.length > 0) recordFailure(ip);
     return (
       <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
         <p className="font-body text-white/50 text-sm">
