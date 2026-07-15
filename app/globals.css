@@ -28,6 +28,16 @@
   *, *::before, *::after { cursor: none !important; }
 }
 
+/* ── Compare-slider handle nudge hint ───────────────────────── */
+.handle-nudge {
+  animation: handle-nudge 1.8s ease-in-out 2;
+}
+@keyframes handle-nudge {
+  0%, 100% { transform: translate(-50%, -50%); }
+  40% { transform: translate(calc(-50% - 10px), -50%); }
+  70% { transform: translate(calc(-50% + 10px), -50%); }
+}
+
 /* ── Keyboard focus ─────────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--color-pen);

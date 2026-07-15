@@ -2,6 +2,7 @@ import { Nav } from "@/components/sections/Nav";
 import { Hero } from "@/components/sections/Hero";
 import { SocialProof } from "@/components/sections/SocialProof";
 import { Problem } from "@/components/sections/Problem";
+import { DragDemo } from "@/components/sections/DragDemo";
 import { DocStack } from "@/components/sections/DocStack";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { AiMarks } from "@/components/sections/AiMarks";
@@ -18,6 +19,7 @@ export default function Home() {
       <Hero />
       <SocialProof />
       <Problem />
+      <DragDemo />
       <DocStack />
       <HowItWorks />
       <AiMarks />
