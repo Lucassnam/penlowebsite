@@ -4,7 +4,7 @@
 
 create table if not exists public.events (
   id           uuid primary key default gen_random_uuid(),
-  type         text not null check (type in ('pageview', 'cta_click', 'signup')),
+  type         text not null check (type in ('pageview', 'cta_click', 'signup', 'application')),
   path         text,
   referrer     text,
   visitor_hash text,

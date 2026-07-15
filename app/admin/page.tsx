@@ -9,9 +9,16 @@ export const metadata: Metadata = {
 };
 
 type EventRow = {
-  type: "pageview" | "cta_click" | "signup";
+  type: "pageview" | "cta_click" | "signup" | "application";
   path: string | null;
   visitor_hash: string | null;
+  created_at: string;
+};
+
+type ApplicationRow = {
+  email: string;
+  role: string;
+  use_case: string;
   created_at: string;
 };
 
@@ -21,6 +28,8 @@ type Stats = {
   ctaClicks: number;
   signups: number;
   waitlistTotal: number;
+  applicationsTotal: number;
+  recentApplications: ApplicationRow[];
   ctaBreakdown: [string, number][];
   sourceBreakdown: [string, number][];
   daily: {
@@ -39,7 +48,7 @@ async function loadStats(): Promise<Stats | { error: string }> {
     const supabase = getSupabaseAdminClient();
     const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
 
-    const [eventsRes, waitlistRes, sourcesRes] = await Promise.all([
+    const [eventsRes, waitlistRes, sourcesRes, applicationsRes, recentAppsRes] = await Promise.all([
       supabase
         .from("events")
         .select("type, path, visitor_hash, created_at")
@@ -48,6 +57,12 @@ async function loadStats(): Promise<Stats | { error: string }> {
         .limit(50000),
       supabase.from("waitlist").select("*", { count: "exact", head: true }),
       supabase.from("waitlist").select("source").limit(10000),
+      supabase.from("tester_applications").select("*", { count: "exact", head: true }),
+      supabase
+        .from("tester_applications")
+        .select("email, role, use_case, created_at")
+        .order("created_at", { ascending: false })
+        .limit(10),
     ]);
 
     if (eventsRes.error) return { error: eventsRes.error.message };
@@ -112,6 +127,8 @@ async function loadStats(): Promise<Stats | { error: string }> {
       ctaClicks,
       signups,
       waitlistTotal: waitlistRes.count ?? 0,
+      applicationsTotal: applicationsRes.count ?? 0,
+      recentApplications: (recentAppsRes.data ?? []) as ApplicationRow[],
       ctaBreakdown: [...ctaCounts.entries()].sort((a, b) => b[1] - a[1]),
       sourceBreakdown: [...sourceCounts.entries()].sort((a, b) => b[1] - a[1]),
       daily,
@@ -185,13 +202,14 @@ export default async function AdminPage({
         ) : (
           <>
             {/* Totals */}
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
+            <div className="grid grid-cols-2 md:grid-cols-6 gap-3 mb-4">
               {[
                 ["Unique visitors", stats.uniqueVisitors],
                 ["Pageviews", stats.pageviews],
                 ["CTA clicks", stats.ctaClicks],
                 ["Signups (30d)", stats.signups],
                 ["Waitlist total", stats.waitlistTotal],
+                ["Applications", stats.applicationsTotal],
               ].map(([label, value]) => (
                 <div key={label} className="rounded-2xl border border-white/10 bg-white/5 p-5">
                   <p className="font-display text-3xl font-bold">{value}</p>
@@ -242,6 +260,40 @@ export default async function AdminPage({
                         <td className="px-4 py-3">{d.pageviews}</td>
                         <td className="px-4 py-3">{d.clicks}</td>
                         <td className="px-4 py-3 text-[#FF6B5B] font-semibold">{d.signups}</td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Recent applications */}
+            <h2 className="font-body font-semibold text-sm text-white/70 mb-3">
+              Recent founding-tester applications
+            </h2>
+            <div className="rounded-2xl border border-white/10 overflow-hidden mb-10 overflow-x-auto">
+              <table className="w-full text-left font-body text-sm">
+                <thead className="bg-white/5 text-white/50 text-xs">
+                  <tr>
+                    {["Date", "Email", "Role", "Would use it for"].map((h) => (
+                      <th key={h} className="px-4 py-3 font-medium">{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {stats.recentApplications.length === 0 ? (
+                    <tr>
+                      <td colSpan={4} className="px-4 py-6 text-white/40 text-center">
+                        No applications yet.
+                      </td>
+                    </tr>
+                  ) : (
+                    stats.recentApplications.map((a) => (
+                      <tr key={a.email} className="border-t border-white/5 align-top">
+                        <td className="px-4 py-3 text-white/60 whitespace-nowrap">{a.created_at.slice(0, 10)}</td>
+                        <td className="px-4 py-3 text-white/80">{a.email}</td>
+                        <td className="px-4 py-3">{a.role}</td>
+                        <td className="px-4 py-3 text-white/70 max-w-md">{a.use_case}</td>
                       </tr>
                     ))
                   )}

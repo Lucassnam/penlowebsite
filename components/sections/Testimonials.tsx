@@ -69,11 +69,11 @@ export function Testimonials() {
           transition={{ duration: 0.6, delay: 0.35 }}
         >
           <a
-            href="#waitlist"
+            href="/apply"
             data-track="cta-testers"
             className="inline-flex items-center justify-center px-6 py-3.5 rounded-2xl font-body font-semibold text-sm bg-pen border border-pen/50 text-white hover:bg-pen/90 transition-all active:scale-[0.97]"
           >
-            Become a founding tester
+            Apply to be a founding tester
             <svg className="ml-2 w-4 h-4" viewBox="0 0 16 16" fill="none" aria-hidden>
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>

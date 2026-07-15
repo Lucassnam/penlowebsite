@@ -40,8 +40,8 @@ const features = [
         <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="#E63027" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
-    title: "Instant recognition",
-    description: "Caret reads each mark the moment you lift your Pencil. No tap, no button, no waiting.",
+    title: "Fast recognition",
+    description: "Caret reads your marks within seconds of lifting the Pencil. No tap, no button.",
     size: "small",
     dark: true,
     tagline: "",
@@ -96,7 +96,7 @@ export function FeatureGrid() {
             <WordReveal text="Built for people" />
             <br />
             <span className="text-ink-muted">
-              <WordReveal text="who edit for a living." delay={0.25} />
+              <WordReveal text="who prefer paper." delay={0.25} />
             </span>
           </h2>
         </motion.div>

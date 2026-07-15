@@ -4,12 +4,12 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { PenMark } from "@/components/pen/PenMark";
 
-const oldWayPains = [
-  "Print the document",
-  "Mark it up with a red pen",
-  "Sit back down at the keyboard",
-  "Manually retype every change into Word",
-  "Hope you didn't miss any",
+const oldWaySteps = [
+  { step: "Print the document", pain: "every draft, every revision round" },
+  { step: "Mark it up with a red pen", pain: "the only part that works" },
+  { step: "Sit back down at the keyboard", pain: "the context switch" },
+  { step: "Manually retype every change into Word", pain: "slow and mind-numbing" },
+  { step: "Hope you didn't miss any", pain: "error-prone to the very end" },
 ];
 
 export function Problem() {
@@ -37,7 +37,7 @@ export function Problem() {
                   the best editor.
                   <PenMark
                     variant="underline"
-                    className="bottom-[-4px] left-0 w-full"
+                    className="bottom-[-4px] left-[10px] w-full"
                     delay={0.4}
                   />
                 </span>
@@ -56,22 +56,32 @@ export function Problem() {
               </p>
             </div>
 
-            {/* Pain list */}
-            <div className="space-y-2.5">
-              {oldWayPains.map((pain, i) => (
-                <motion.div
-                  key={pain}
-                  className="flex items-center gap-3 text-sm font-body text-ink-muted"
-                  initial={{ opacity: 0, x: -12 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.3 + i * 0.07 }}
-                >
-                  <span className="font-mono text-[11px] font-semibold text-pen w-6 flex-shrink-0 select-none">
-                    0{i + 1}
-                  </span>
-                  <span className={i === 3 ? "text-ink font-medium" : ""}>{pain}</span>
-                </motion.div>
-              ))}
+            {/* The outdated process */}
+            <div>
+              <p className="text-[11px] uppercase tracking-widest font-body text-pen font-semibold mb-3">
+                The outdated process
+              </p>
+              <div className="space-y-3">
+                {oldWaySteps.map((item, i) => (
+                  <motion.div
+                    key={item.step}
+                    className="flex items-start gap-3 font-body"
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.4, delay: 0.3 + i * 0.07 }}
+                  >
+                    <span className="font-mono text-[11px] font-semibold text-pen w-6 flex-shrink-0 select-none pt-0.5">
+                      0{i + 1}
+                    </span>
+                    <span>
+                      <span className={`block text-sm ${i === 3 ? "text-ink font-semibold" : "text-ink font-medium"}`}>
+                        {item.step}
+                      </span>
+                      <span className="block text-xs text-ink-muted mt-0.5">{item.pain}</span>
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
 
