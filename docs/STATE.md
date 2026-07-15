@@ -44,7 +44,7 @@ Ship fixes + full analytics pipeline + /admin dashboard built and verified local
 - NOTE: uncommitted CLAUDE.md change (48 lines) in working tree predates this session (guardrails-kit install on 2026-07-06) — not touched
 
 ## Open items
-- BLOCKER (user): dead Supabase project — see ## Now for the exact restore steps; until done, waitlist signups AND analytics 500 in prod if prod shares these env vars
+- BLOCKER (user): dead Supabase project — see ## Now for the exact restore steps; until done, waitlist signups, /apply applications, AND analytics 500 in prod if prod shares these env vars. THREE SQL files to run: supabase-waitlist-setup.sql, supabase-analytics-setup.sql, supabase-applications-setup.sql
 - USER: confirm hello@usecaret.app mailbox exists and is monitored (contact link in footer, FAQ, privacy, terms)
 - USER: copy ADMIN_PASSWORD from .env.local to Vercel env; add SUPABASE_SERVICE_ROLE_KEY to both
 - Suggest user delete stray /Users/coolio_999/node_modules (contains node v18 binary that breaks npm scripts in every project under $HOME)
