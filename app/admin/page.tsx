@@ -269,7 +269,7 @@ export default async function AdminPage({
 
             {/* Recent applications */}
             <h2 className="font-body font-semibold text-sm text-white/70 mb-3">
-              Recent founding-tester applications
+              Recent beta-tester applications
             </h2>
             <div className="rounded-2xl border border-white/10 overflow-hidden mb-10 overflow-x-auto">
               <table className="w-full text-left font-body text-sm">

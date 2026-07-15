@@ -89,7 +89,7 @@ export default function ApplyPage() {
           ) : (
             <motion.div key="form" exit={{ opacity: 0, y: -12 }}>
               <p className="text-xs uppercase tracking-widest font-body text-pen font-semibold mb-3">
-                Founding testers
+                Beta testers
               </p>
               <h1 className="font-display text-4xl font-bold text-ink leading-tight mb-3">
                 Apply to test Caret.

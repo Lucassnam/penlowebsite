@@ -1,4 +1,4 @@
--- Caret founding-tester applications table + Row Level Security.
+-- Caret beta-tester applications table + Row Level Security.
 -- Run this in: Supabase dashboard → your project → SQL Editor → New query → Run.
 
 create table if not exists public.tester_applications (

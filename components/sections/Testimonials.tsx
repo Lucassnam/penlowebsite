@@ -33,14 +33,14 @@ export function Testimonials() {
           transition={{ duration: 0.7 }}
         >
           <p className="text-xs uppercase tracking-widest font-body text-ink-muted font-semibold mb-3">
-            Founding testers
+            Beta testers
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-ink">
             <WordReveal text="Be one of the first." />
           </h2>
           <p className="mt-5 font-body text-base text-ink-muted max-w-xl mx-auto leading-relaxed">
             Caret is in private beta. We&apos;re inviting a small group of
-            founding testers who edit on paper every day. You get free early
+            beta testers who edit on paper every day. You get free early
             access, the 40% launch discount, and a direct line to the founder.
             We get your brutal feedback.
           </p>
@@ -73,7 +73,7 @@ export function Testimonials() {
             data-track="cta-testers"
             className="inline-flex items-center justify-center px-6 py-3.5 rounded-2xl font-body font-semibold text-sm bg-pen border border-pen/50 text-white hover:bg-pen/90 transition-all active:scale-[0.97]"
           >
-            Apply to be a founding tester
+            Apply to be a beta tester
             <svg className="ml-2 w-4 h-4" viewBox="0 0 16 16" fill="none" aria-hidden>
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
