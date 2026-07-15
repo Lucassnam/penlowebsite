@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Caret — Mark it up like paper. Keep the document.";
+export const alt = "Caret: Mark it up like paper. Keep the document.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

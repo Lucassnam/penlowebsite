@@ -6,7 +6,7 @@ export function Footer() {
         <div className="py-10 grid sm:grid-cols-3 gap-8 items-start">
           {/* Brand */}
           <div>
-            <a href="#" className="inline-block font-display font-bold text-ink text-xl mb-2">
+            <a href="/" className="inline-block font-display font-bold text-ink text-xl mb-2">
               Caret<span className="text-pen">.</span>
             </a>
             <p className="font-body text-xs text-ink-muted leading-relaxed max-w-[200px]">
@@ -47,7 +47,7 @@ export function Footer() {
             <ul className="space-y-3">
               {[
                 { label: "Privacy Policy", href: "/privacy" },
-                { label: "Terms of Service", href: "#" },
+                { label: "Terms of Service", href: "/terms" },
                 { label: "Contact", href: "mailto:hello@usecaret.app" },
               ].map((item) => (
                 <li key={item.label}>
@@ -68,20 +68,6 @@ export function Footer() {
           <p className="font-body text-xs text-ink-muted">
             © 2026 Caret. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
-            {/* Twitter/X */}
-            <a href="#" className="text-ink-muted hover:text-ink transition-colors" aria-label="Twitter">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-            </a>
-            {/* LinkedIn */}
-            <a href="#" className="text-ink-muted hover:text-ink transition-colors" aria-label="LinkedIn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2V9zM4 6a2 2 0 100-4 2 2 0 000 4z"/>
-              </svg>
-            </a>
-          </div>
         </div>
       </div>
     </footer>

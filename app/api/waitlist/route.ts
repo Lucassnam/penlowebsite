@@ -1,4 +1,5 @@
 import { getSupabaseServerClient } from "@/lib/supabase";
+import { getVisitorHash } from "@/lib/visitor";
 
 // Basic RFC-5322-ish email check — good enough for a signup form.
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -43,6 +44,18 @@ export async function POST(request: Request) {
         { error: "Something went wrong. Please try again." },
         { status: 500 },
       );
+    }
+
+    // Analytics: record the conversion. Must never block or fail the signup.
+    try {
+      const { error: eventError } = await supabase.from("events").insert({
+        type: "signup",
+        path: typeof source === "string" ? source.slice(0, 64) : null,
+        visitor_hash: getVisitorHash(request),
+      });
+      if (eventError) console.error("signup event insert failed:", eventError);
+    } catch (err) {
+      console.error("signup event insert failed:", err);
     }
 
     return Response.json({ ok: true });

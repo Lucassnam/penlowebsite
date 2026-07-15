@@ -13,6 +13,7 @@ interface TahoeButtonProps {
   variant?: "dark" | "light" | "pen";
   size?: "sm" | "md" | "lg";
   magnetic?: boolean;
+  dataTrack?: string;
 }
 
 export function TahoeButton({
@@ -24,6 +25,7 @@ export function TahoeButton({
   variant = "dark",
   size = "md",
   magnetic = true,
+  dataTrack,
 }: TahoeButtonProps) {
   const ref = useRef<HTMLElement>(null);
   const [hovered, setHovered] = useState(false);
@@ -154,6 +156,7 @@ export function TahoeButton({
       <motion.a
         ref={ref as React.Ref<HTMLAnchorElement>}
         href={href}
+        data-track={dataTrack}
         className={baseClasses}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setHovered(true)}
@@ -171,6 +174,7 @@ export function TahoeButton({
   return (
     <motion.button
       ref={ref as React.Ref<HTMLButtonElement>}
+      data-track={dataTrack}
       className={baseClasses}
       onClick={onClick}
       onMouseMove={handleMouseMove}

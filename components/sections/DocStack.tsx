@@ -86,7 +86,7 @@ export function DocStack() {
             </div>
             <p className="font-body text-base text-ink-muted leading-relaxed">
               Caret never changes a word without your sign-off. Every mark
-              becomes a proposed edit you approve or reject — one by one, or all
+              becomes a proposed edit you approve or reject, one by one or all
               at once. The AI does the retyping to make your life easier; the
               red pen stays in your hand. And it works on any{" "}
               <code className="text-ink font-mono text-sm bg-black/5 px-1.5 py-0.5 rounded">.docx</code>:

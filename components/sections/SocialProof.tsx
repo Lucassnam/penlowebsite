@@ -3,10 +3,9 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Counter } from "@/components/ui/counter";
-import { AuroraText } from "@/components/ui/aurora-text";
 
 const stats = [
-  { value: 12, suffix: "+", label: "types of pen marks it reads", decimals: 0 },
+  { value: 54, suffix: "", label: "studies show you comprehend more on paper than screens*", decimals: 0 },
   { value: 3.2, suffix: "s", label: "avg. AI processing", decimals: 1 },
   { value: 0, suffix: "", label: "paper wasted. Ever.", decimals: 0, prefix: "Zero" },
 ];
@@ -33,8 +32,8 @@ export function SocialProof() {
               transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
             >
               {i === 2 ? (
-                <p className="font-display text-3xl md:text-5xl font-bold leading-none mb-2">
-                  <AuroraText>Zero</AuroraText>
+                <p className="font-display text-3xl md:text-5xl font-bold leading-none mb-2 text-white">
+                  Zero
                 </p>
               ) : (
                 <p className="font-display text-3xl md:text-5xl font-bold text-white leading-none mb-2">
@@ -52,6 +51,10 @@ export function SocialProof() {
             </motion.div>
           ))}
         </div>
+        <p className="mt-8 text-center font-body text-[11px] text-white/30">
+          *Meta-analysis of 54 studies, 171,055 readers: paper beats screens for
+          reading comprehension. Delgado et al., Educational Research Review (2018).
+        </p>
       </div>
 
       {/* Divider */}

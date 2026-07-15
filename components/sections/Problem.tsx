@@ -43,15 +43,16 @@ export function Problem() {
                 </span>
               </h2>
               <p className="mt-4 font-body text-base text-ink-muted leading-relaxed">
-                Editors, lawyers, teachers — the people who edit for a living —
+                Editors, lawyers, teachers: the people who edit for a living
                 still print documents and mark them up by hand. Not out of
-                habit: you genuinely catch more errors on paper. It&apos;s
+                habit. You genuinely catch more errors on paper, it&apos;s
                 tactile, studies show handwriting improves memory and cognition,
-                and every word stays <em>your</em> call — real editing, not
+                and every word stays <em>your</em> call. Real editing, not
                 prompting an AI to rewrite for you.
               </p>
               <p className="mt-3 font-body text-base text-ink-muted leading-relaxed">
-                The problem isn&apos;t the paper. It&apos;s what happens next:
+                But for people who edit by hand, there has never been a good way
+                to get those marks back into the digital file:
               </p>
             </div>
 
@@ -89,7 +90,7 @@ export function Problem() {
                 Same marks. On your iPad.
               </h2>
               <p className="mt-4 font-body text-base text-ink-muted leading-relaxed">
-                Strike a word, caret in a new one, dot in a period — exactly the
+                Strike a word, caret in a new one, dot in a period. The exact
                 marks you&apos;d make with a red pen. Caret reads them and writes
                 the edits straight back into your{" "}
                 <code className="text-ink font-mono text-sm bg-black/5 px-1.5 py-0.5 rounded">.docx</code>,
@@ -97,7 +98,7 @@ export function Problem() {
               </p>
               <p className="mt-3 font-body text-base text-ink-muted leading-relaxed">
                 No printing. No sitting back down to retype. Mark it up, cap
-                your pen — the document&apos;s done.
+                your pen, the document&apos;s done.
               </p>
             </div>
 

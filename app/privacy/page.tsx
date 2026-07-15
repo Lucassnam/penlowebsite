@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Privacy Policy — Caret",
+  title: "Privacy Policy · Caret",
   description: "How Caret handles your documents and data.",
 };
 

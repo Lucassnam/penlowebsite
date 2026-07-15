@@ -42,7 +42,7 @@ export function Nav() {
         }}
       >
         <a
-          href="#"
+          href="/"
           className="font-display text-xl font-bold tracking-tight text-white z-10"
         >
           Caret
@@ -73,6 +73,7 @@ export function Nav() {
           <TahoeButton
             href="#waitlist"
             variant="dark"
+            dataTrack="cta-nav"
             className="text-white text-sm py-2 px-5 bg-pen/85 border-pen/30 hover:bg-pen"
           >
             Get early access

@@ -3,7 +3,6 @@
 import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { LiquidEffect } from "@/components/ui/liquid-effect";
-import { AuroraText } from "@/components/ui/aurora-text";
 import { Magnetic } from "@/components/ui/magnetic";
 import { WordReveal } from "@/components/ui/word-reveal";
 
@@ -100,9 +99,9 @@ export function FinalCta() {
         >
           <h2 className="font-display text-5xl md:text-6xl font-bold text-white leading-[1.1] mb-4 pb-2">
             <WordReveal text="Stop retyping" className="block" />
-            <AuroraText className="pb-2">
+            <span className="text-pen block pb-2">
               <WordReveal text="your edits." delay={0.2} />
-            </AuroraText>
+            </span>
           </h2>
 
           <p className="font-body text-lg text-white/50 mb-10 leading-relaxed">
@@ -161,6 +160,7 @@ export function FinalCta() {
                 <Magnetic strength={0.2}>
                   <button
                     type="submit"
+                    data-track="cta-waitlist-submit"
                     disabled={loading}
                     className="relative inline-flex items-center justify-center px-6 py-3.5 rounded-2xl font-body font-semibold text-sm bg-pen border border-pen/50 text-white hover:bg-pen/90 whitespace-nowrap transition-all active:scale-[0.97] overflow-hidden group disabled:opacity-70 disabled:cursor-not-allowed"
                   >

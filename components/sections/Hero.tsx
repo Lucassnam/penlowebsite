@@ -53,7 +53,7 @@ export function Hero() {
               Caret is{" "}
               <span className="text-white/80 font-medium">red-pen editing without the retyping</span>.
               Mark up any document with your Apple Pencil exactly like you would
-              on paper — Caret reads your marks and writes them straight into
+              on paper. Caret reads your marks and writes them straight into
               the original file.
             </motion.p>
 
@@ -65,7 +65,7 @@ export function Hero() {
               transition={{ delay: 0.85, duration: 0.6, ease: "easeOut" }}
             >
               <Magnetic strength={0.25}>
-                <TahoeButton href="#waitlist" variant="pen" size="lg">
+                <TahoeButton href="#waitlist" variant="pen" size="lg" dataTrack="cta-hero">
                   Get early access
                   <svg className="w-4 h-4 ml-1" viewBox="0 0 16 16" fill="none" aria-hidden>
                     <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

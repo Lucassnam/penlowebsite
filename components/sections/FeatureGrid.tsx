@@ -16,7 +16,7 @@ const features = [
     ),
     title: "Keeps your formatting",
     description:
-      "Hand-retyping edits is how styles, numbering, and headers get broken. Caret writes changes into the file the way Word does — every detail survives untouched.",
+      "Hand-retyping edits is how styles, numbering, and headers get broken. Caret writes changes into the file the way Word does, so every detail survives untouched.",
     size: "large",
     dark: false,
     tagline: "Fonts, styles, tracked changes, all preserved",
@@ -56,7 +56,7 @@ const features = [
     ),
     title: "Works on any .docx",
     description:
-      "Contracts, manuscripts, essays, reports, scripts. If Word opens it, Caret marks it — no special template, no reformatting your work to fit the tool.",
+      "Contracts, manuscripts, essays, reports, scripts. If Word opens it, Caret marks it. No special template, no reformatting your work to fit the tool.",
     size: "large",
     dark: false,
     tagline: "Theses · Contracts · Articles · Scripts · Reports",
@@ -69,7 +69,7 @@ const features = [
       </svg>
     ),
     title: "Original never touched",
-    description: "Every edit lands in a fresh copy. Your source file stays exactly as it was — you can't lose work you didn't approve.",
+    description: "Every edit lands in a fresh copy. Your source file stays exactly as it was. You can't lose work you didn't approve.",
     size: "large",
     dark: false,
     tagline: "Non-destructive by design",

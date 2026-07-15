@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
+import { CustomCursor } from "@/components/ui/custom-cursor";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { Tracker } from "@/components/analytics/Tracker";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -17,9 +19,9 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://usecaret.app"),
-  title: "Caret — Mark it up like paper. Keep the document.",
+  title: "Caret: Mark it up like paper. Keep the document.",
   description:
-    "Caret lets you mark up Word documents with Apple Pencil red ink — strikes, carets, circles — and applies every edit back into the real .docx automatically.",
+    "Caret lets you mark up Word documents with Apple Pencil red ink (strikes, carets, circles) and applies every edit back into the real .docx automatically.",
   keywords: [
     "Caret",
     "Caret app",
@@ -31,7 +33,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Caret — Mark it up like paper. Keep the document.",
+    title: "Caret: Mark it up like paper. Keep the document.",
     description:
       "All the benefits of marking up paper, none of the friction of copying red-pen marks back into the document.",
     url: "https://usecaret.app",
@@ -40,7 +42,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Caret — Mark it up like paper. Keep the document.",
+    title: "Caret: Mark it up like paper. Keep the document.",
     description:
       "Mark up Word docs with Apple Pencil. Every red-ink edit applied back into the real .docx, automatically.",
   },
@@ -54,7 +56,7 @@ const jsonLd = {
   operatingSystem: "iPadOS",
   url: "https://usecaret.app",
   description:
-    "Caret lets you mark up Word documents with Apple Pencil red ink — strikes, carets, circles — and applies every edit back into the real .docx automatically.",
+    "Caret lets you mark up Word documents with Apple Pencil red ink (strikes, carets, circles) and applies every edit back into the real .docx automatically.",
 };
 
 export default function RootLayout({
@@ -72,7 +74,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <CustomCursor />
         <ScrollProgress />
+        <Tracker />
         {children}
       </body>
     </html>

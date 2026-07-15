@@ -4,44 +4,20 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { WordReveal } from "@/components/ui/word-reveal";
 
-const testimonials = [
+const personas = [
   {
-    quote:
-      "I've been editing manuscripts by hand for twenty years. Caret is the first tool that actually gets what I'm doing when I mark up a page.",
-    name: "Sarah M.",
-    role: "Senior Book Editor",
+    title: "Editors & proofreaders",
+    line: "You mark up manuscripts for a living. Help us get every proofreading mark right.",
   },
   {
-    quote:
-      "Contract review used to mean printing, marking, retyping. Now I mark up the iPad screen and hand back a clean docx in minutes.",
-    name: "James K.",
-    role: "Corporate Lawyer",
+    title: "Lawyers & paralegals",
+    line: "Redline the contract by hand. Skip retyping the changes into Word.",
   },
   {
-    quote:
-      "As a grad student with hundreds of pages to annotate, this is the tool I didn't know I desperately needed. The AI understands caret inserts perfectly.",
-    name: "Priya R.",
-    role: "PhD Candidate, Literature",
-  },
-  {
-    quote:
-      "My editors send me marked-up PDFs. Now I just pull them into Caret and the changes apply themselves. Absolutely wild.",
-    name: "Tom W.",
-    role: "Freelance Journalist",
+    title: "Academics & grad students",
+    line: "Advisor markups, thesis drafts, and revision cycles without the busywork.",
   },
 ];
-
-function Stars() {
-  return (
-    <div className="flex gap-0.5 mb-4" aria-label="5 stars">
-      {[...Array(5)].map((_, i) => (
-        <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#E63027" aria-hidden>
-          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-        </svg>
-      ))}
-    </div>
-  );
-}
 
 export function Testimonials() {
   const ref = useRef<HTMLDivElement>(null);
@@ -57,42 +33,52 @@ export function Testimonials() {
           transition={{ duration: 0.7 }}
         >
           <p className="text-xs uppercase tracking-widest font-body text-ink-muted font-semibold mb-3">
-            Early access feedback
+            Founding testers
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-ink">
-            <WordReveal text="Why pen people love it." />
+            <WordReveal text="Be one of the first." />
           </h2>
+          <p className="mt-5 font-body text-base text-ink-muted max-w-xl mx-auto leading-relaxed">
+            Caret is in private beta. We&apos;re inviting a small group of
+            founding testers who edit on paper every day. You get free early
+            access, the 40% launch discount, and a direct line to the founder.
+            We get your brutal feedback.
+          </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-5">
-          {testimonials.map((t, i) => (
+        <div className="grid sm:grid-cols-3 gap-5 mb-12">
+          {personas.map((p, i) => (
             <motion.div
-              key={t.name}
+              key={p.title}
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.08 + i * 0.09 }}
             >
-            <div className="premium-card rounded-2xl p-7 h-full">
-              <Stars />
-
-              <p className="font-display text-lg italic text-ink leading-relaxed mb-6">
-                &ldquo;{t.quote}&rdquo;
-              </p>
-
-              <div className="flex items-center gap-3">
-                {/* Avatar */}
-                <div className="w-10 h-10 rounded-full bg-ink flex items-center justify-center text-sm font-display font-bold text-white flex-shrink-0">
-                  {t.name[0]}
-                </div>
-                <div>
-                  <p className="font-body font-semibold text-ink text-sm">{t.name}</p>
-                  <p className="font-body text-xs text-ink-muted mt-0.5">{t.role}</p>
-                </div>
+              <div className="premium-card rounded-2xl p-7 h-full">
+                <p className="font-body font-semibold text-ink text-sm mb-2">{p.title}</p>
+                <p className="font-body text-sm text-ink-muted leading-relaxed">{p.line}</p>
               </div>
-            </div>
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.35 }}
+        >
+          <a
+            href="#waitlist"
+            data-track="cta-testers"
+            className="inline-flex items-center justify-center px-6 py-3.5 rounded-2xl font-body font-semibold text-sm bg-pen border border-pen/50 text-white hover:bg-pen/90 transition-all active:scale-[0.97]"
+          >
+            Become a founding tester
+            <svg className="ml-2 w-4 h-4" viewBox="0 0 16 16" fill="none" aria-hidden>
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
+        </motion.div>
       </div>
     </section>
   );
