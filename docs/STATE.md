@@ -1,15 +1,16 @@
 # STATE
 
 ## Goal
-Ship-readiness + /admin analytics per approved plan docs/plans/2026-07-14-ship-ready-admin.md. (Copy rewrite pushed as d78fe32; CustomCursor restored per user request.)
+Marketing dashboard in /admin per approved plan docs/plans/2026-07-15-marketing-dashboard.md (funnel by ?src, outreach tracker, Reddit tracker). CustomCursor permanently removed 2026-07-16.
 
 ## Now
-Ship fixes + full analytics pipeline + /admin dashboard built and verified locally (build exit 0). BLOCKED on user: Supabase project is dead (NXDOMAIN) — user must create a new project, run docs/supabase-waitlist-setup.sql + docs/supabase-analytics-setup.sql, update SUPABASE_URL/SUPABASE_ANON_KEY and add SUPABASE_SERVICE_ROLE_KEY in .env.local AND Vercel, and copy ADMIN_PASSWORD (already generated in .env.local) to Vercel. Uncommitted; user has not asked to commit this batch.
+Executing dashboard plan Step 1 (source capture + funnel). CustomCursor deleted (file + layout refs + cursor:none CSS). STILL BLOCKED for live verification: Supabase project dead (NXDOMAIN) — user must create project, run the three docs/supabase-*.sql files (waitlist, analytics, marketing once written), set SUPABASE_URL/SUPABASE_ANON_KEY/SUPABASE_SERVICE_ROLE_KEY + ADMIN_PASSWORD in .env.local and Vercel.
 
 ## Next
-1. (optional, needs user approval) delete stray /Users/coolio_999/node_modules to fix npm scripts globally
-2. (optional) delete now-unused components/ui/custom-cursor.tsx and text-scramble.tsx
-3. (pre-launch) replace invented testimonials with real quotes; fill footer social/Terms links
+1. Dashboard Step 2 (outreach tracker) + Step 3 (Reddit tracker) per plan
+2. Copy-overload audit of landing page (user asked 2026-07-16)
+3. (optional, needs user approval) delete stray /Users/coolio_999/node_modules to fix npm scripts globally
+4. (pre-launch) replace invented testimonials with real quotes; fill footer social/Terms links
 
 ## Constraints
 - User: "No M dash is on the website" — no em-dashes in any site copy, titles, or metadata (2026-07-14). Exception: the "——" strikethrough mark glyphs.
@@ -17,6 +18,7 @@ Ship fixes + full analytics pipeline + /admin dashboard built and verified local
 - User: "the 4 steps, it's good" — do not change HowItWorks step content (2026-07-13)
 - User: fix "the beige color with the boxes, the colored boxes with red lining around them, that just looks really AI"
 - User: "make careful design choices"; "do the whole thing"; ship finished product, not a plan
+- User: "remove the cusor its way to buggy" — CustomCursor and cursor:none CSS permanently removed; do not reintroduce (2026-07-16)
 - Global rules: never remove auth/required fields; report success only beside real exit codes
 
 ## Decisions

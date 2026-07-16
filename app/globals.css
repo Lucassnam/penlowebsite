@@ -23,11 +23,6 @@
   html { scroll-behavior: smooth; }
 }
 
-/* ── Hide native cursor on desktop ─────────────────────────── */
-@media (hover: hover) and (pointer: fine) {
-  *, *::before, *::after { cursor: none !important; }
-}
-
 /* ── Compare-slider handle nudge hint ───────────────────────── */
 .handle-nudge {
   animation: handle-nudge 1.8s ease-in-out 2;

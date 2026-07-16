@@ -13,10 +13,11 @@ export async function POST(request: Request) {
     return Response.json({ error: "Invalid request body." }, { status: 400 });
   }
 
-  const { type, path, referrer } = (body ?? {}) as {
+  const { type, path, referrer, source } = (body ?? {}) as {
     type?: unknown;
     path?: unknown;
     referrer?: unknown;
+    source?: unknown;
   };
 
   if (typeof type !== "string" || !CLIENT_EVENT_TYPES.has(type)) {
@@ -29,6 +30,7 @@ export async function POST(request: Request) {
       type,
       path: typeof path === "string" ? path.slice(0, 256) : null,
       referrer: typeof referrer === "string" ? referrer.slice(0, 512) : null,
+      source: typeof source === "string" ? source.slice(0, 64) : null,
       visitor_hash: getVisitorHash(request),
     });
 

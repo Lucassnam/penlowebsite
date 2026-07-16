@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { getSupabaseAdminClient } from "@/lib/supabase-admin";
 import { isBlocked, recordFailure } from "@/lib/admin-rate-limit";
+import { OutreachPanel, type OutreachRow } from "./OutreachPanel";
+import { RedditPanel, type RedditRow } from "./RedditPanel";
 
 export const metadata: Metadata = {
   title: "Caret Admin",
@@ -11,6 +13,7 @@ export const metadata: Metadata = {
 type EventRow = {
   type: "pageview" | "cta_click" | "signup" | "application";
   path: string | null;
+  source: string | null;
   visitor_hash: string | null;
   created_at: string;
 };
@@ -32,6 +35,11 @@ type Stats = {
   recentApplications: ApplicationRow[];
   ctaBreakdown: [string, number][];
   sourceBreakdown: [string, number][];
+  funnel: { source: string; visitors: number; pageviews: number; signups: number }[];
+  outreach: OutreachRow[];
+  reddit: RedditRow[];
+  /* Null when the marketing tables exist; otherwise the setup hint to show. */
+  marketingSetupHint: string | null;
   daily: {
     day: string;
     visitors: number;
@@ -51,7 +59,7 @@ async function loadStats(): Promise<Stats | { error: string }> {
     const [eventsRes, waitlistRes, sourcesRes, applicationsRes, recentAppsRes] = await Promise.all([
       supabase
         .from("events")
-        .select("type, path, visitor_hash, created_at")
+        .select("type, path, source, visitor_hash, created_at")
         .gte("created_at", since)
         .order("created_at", { ascending: false })
         .limit(50000),
@@ -65,12 +73,30 @@ async function loadStats(): Promise<Stats | { error: string }> {
         .limit(10),
     ]);
 
+    // Marketing tables are optional until docs/supabase-marketing-setup.sql
+    // has been run; their absence must not break the analytics above.
+    const [outreachRes, redditRes] = await Promise.all([
+      supabase
+        .from("outreach_targets")
+        .select("id, name, tier, contact, email, status, draft_subject, draft_body, notes, sent_at, follow_up_at")
+        .order("created_at", { ascending: true }),
+      supabase
+        .from("reddit_posts")
+        .select("id, subreddit, title, url, src_tag, posted_at, score, num_comments, views, last_refreshed")
+        .order("created_at", { ascending: true }),
+    ]);
+    const marketingSetupHint =
+      outreachRes.error || redditRes.error
+        ? "Marketing tables not found. Run docs/supabase-marketing-setup.sql in the Supabase SQL editor."
+        : null;
+
     if (eventsRes.error) return { error: eventsRes.error.message };
     if (waitlistRes.error) return { error: waitlistRes.error.message };
 
     const events = (eventsRes.data ?? []) as EventRow[];
     const visitorHashes = new Set<string>();
     const ctaCounts = new Map<string, number>();
+    const funnelMap = new Map<string, { visitors: Set<string>; pageviews: number }>();
     const dailyMap = new Map<
       string,
       { visitors: Set<string>; pageviews: number; clicks: number; signups: number }
@@ -92,6 +118,14 @@ async function loadStats(): Promise<Stats | { error: string }> {
         if (ev.visitor_hash) {
           visitorHashes.add(ev.visitor_hash);
           d.visitors.add(ev.visitor_hash);
+        }
+        if (ev.source) {
+          if (!funnelMap.has(ev.source)) {
+            funnelMap.set(ev.source, { visitors: new Set(), pageviews: 0 });
+          }
+          const f = funnelMap.get(ev.source)!;
+          f.pageviews++;
+          if (ev.visitor_hash) f.visitors.add(ev.visitor_hash);
         }
       } else if (ev.type === "cta_click") {
         ctaClicks++;
@@ -121,6 +155,29 @@ async function loadStats(): Promise<Stats | { error: string }> {
         signups: d.signups,
       }));
 
+    // Union of sources seen in traffic and in signups, so a channel with
+    // signups but no tracked visits (pre-source-column history) still shows.
+    const funnelSources = new Set([
+      ...funnelMap.keys(),
+      ...[...sourceCounts.keys()].filter((s) => s !== "(none)"),
+    ]);
+    const funnel = [...funnelSources]
+      .map((source) => ({
+        source,
+        visitors: funnelMap.get(source)?.visitors.size ?? 0,
+        pageviews: funnelMap.get(source)?.pageviews ?? 0,
+        signups: sourceCounts.get(source) ?? 0,
+      }))
+      .sort((a, b) => b.signups - a.signups || b.visitors - a.visitors);
+
+    const reddit: RedditRow[] = (
+      (redditRes.data ?? []) as Omit<RedditRow, "clicks" | "signups">[]
+    ).map((r) => ({
+      ...r,
+      clicks: r.src_tag ? funnelMap.get(r.src_tag)?.pageviews ?? 0 : 0,
+      signups: r.src_tag ? sourceCounts.get(r.src_tag) ?? 0 : 0,
+    }));
+
     return {
       uniqueVisitors: visitorHashes.size,
       pageviews,
@@ -131,6 +188,10 @@ async function loadStats(): Promise<Stats | { error: string }> {
       recentApplications: (recentAppsRes.data ?? []) as ApplicationRow[],
       ctaBreakdown: [...ctaCounts.entries()].sort((a, b) => b[1] - a[1]),
       sourceBreakdown: [...sourceCounts.entries()].sort((a, b) => b[1] - a[1]),
+      funnel,
+      outreach: (outreachRes.data ?? []) as OutreachRow[],
+      reddit,
+      marketingSetupHint,
       daily,
     };
   } catch (err) {
@@ -231,6 +292,61 @@ export default async function AdminPage({
                 </div>
               ))}
             </div>
+
+            {/* Channel funnel */}
+            <h2 className="font-body font-semibold text-sm text-white/70 mb-3">
+              Channel funnel (visits with ?src= over 30 days, all-time signups)
+            </h2>
+            <div className="rounded-2xl border border-white/10 overflow-hidden mb-10 overflow-x-auto">
+              <table className="w-full text-left font-body text-sm">
+                <thead className="bg-white/5 text-white/50 text-xs">
+                  <tr>
+                    {["Source", "Visitors", "Pageviews", "Signups", "Visitor → signup"].map((h) => (
+                      <th key={h} className="px-4 py-3 font-medium">{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {stats.funnel.length === 0 ? (
+                    <tr>
+                      <td colSpan={5} className="px-4 py-6 text-white/40 text-center">
+                        No tagged traffic yet. Share links with ?src=channel-name to populate this.
+                      </td>
+                    </tr>
+                  ) : (
+                    stats.funnel.map((f) => (
+                      <tr key={f.source} className="border-t border-white/5">
+                        <td className="px-4 py-3 text-white/80">{f.source}</td>
+                        <td className="px-4 py-3">{f.visitors}</td>
+                        <td className="px-4 py-3">{f.pageviews}</td>
+                        <td className="px-4 py-3 text-[#FF6B5B] font-semibold">{f.signups}</td>
+                        <td className="px-4 py-3">{pct(f.signups, f.visitors)}</td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Marketing: outreach + reddit */}
+            {stats.marketingSetupHint ? (
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-6 mb-10">
+                <p className="font-body font-semibold text-sm mb-1">Outreach + Reddit tracking</p>
+                <p className="font-body text-xs text-white/50">{stats.marketingSetupHint}</p>
+              </div>
+            ) : (
+              <>
+                <h2 className="font-body font-semibold text-sm text-white/70 mb-3">
+                  Outreach (email targets · statuses · drafts)
+                </h2>
+                <OutreachPanel rows={stats.outreach} adminKey={typeof key === "string" ? key : ""} />
+
+                <h2 className="font-body font-semibold text-sm text-white/70 mb-3">
+                  Reddit posts (score/comments auto · views manual from the Reddit app)
+                </h2>
+                <RedditPanel rows={stats.reddit} adminKey={typeof key === "string" ? key : ""} />
+              </>
+            )}
 
             {/* Daily table */}
             <h2 className="font-body font-semibold text-sm text-white/70 mb-3">
