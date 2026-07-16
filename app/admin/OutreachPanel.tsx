@@ -26,6 +26,14 @@ function mailtoHref(row: OutreachRow): string | null {
   return `mailto:${row.email}?subject=${subject}&body=${body}`;
 }
 
+function gmailHref(row: OutreachRow): string | null {
+  if (!row.email) return null;
+  const to = encodeURIComponent(row.email);
+  const subject = encodeURIComponent(row.draft_subject ?? "");
+  const body = encodeURIComponent(row.draft_body ?? "");
+  return `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${subject}&body=${body}`;
+}
+
 export function OutreachPanel({ rows }: { rows: OutreachRow[] }) {
   const [items, setItems] = useState(rows);
   const [busy, setBusy] = useState<string | null>(null);
@@ -99,10 +107,21 @@ export function OutreachPanel({ rows }: { rows: OutreachRow[] }) {
                 new Date(row.follow_up_at).getTime() < now &&
                 (row.status === "sent" || row.status === "followed_up");
               const mailto = mailtoHref(row);
+              const gmail = gmailHref(row);
               return (
                 <tr key={row.id} className={`border-t border-white/5 align-top ${followUpDue ? "bg-[#E63027]/10" : ""}`}>
                   <td className="px-4 py-3">
                     <p className="text-white/90 font-semibold">{row.name}</p>
+                    <input
+                      type="email"
+                      defaultValue={row.email ?? ""}
+                      placeholder="paste their email"
+                      onBlur={(e) => {
+                        const v = e.target.value.trim();
+                        if (v !== (row.email ?? "")) update(row.id, { email: v || null });
+                      }}
+                      className="mt-1 w-48 bg-white/10 border border-white/10 rounded-lg px-2 py-1 text-xs text-white"
+                    />
                     {row.notes && <p className="text-white/40 text-xs mt-1 max-w-xs">{row.notes}</p>}
                   </td>
                   <td className="px-4 py-3 text-white/60">{row.tier}</td>
@@ -132,12 +151,22 @@ export function OutreachPanel({ rows }: { rows: OutreachRow[] }) {
                     >
                       {copied === row.id ? "copied" : "copy draft"}
                     </button>
+                    {gmail && (
+                      <a
+                        href={gmail}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="ml-2 text-xs rounded-lg border border-white/15 px-2 py-1 hover:bg-white/10 transition-colors inline-block"
+                      >
+                        Gmail
+                      </a>
+                    )}
                     {mailto && (
                       <a
                         href={mailto}
                         className="ml-2 text-xs rounded-lg border border-white/15 px-2 py-1 hover:bg-white/10 transition-colors inline-block"
                       >
-                        open in Mail
+                        Mail
                       </a>
                     )}
                   </td>
