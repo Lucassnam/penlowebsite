@@ -26,13 +26,6 @@ function mailtoHref(row: OutreachRow): string | null {
   return `mailto:${row.email}?subject=${subject}&body=${body}`;
 }
 
-function gmailHref(row: OutreachRow): string | null {
-  if (!row.email) return null;
-  const to = encodeURIComponent(row.email);
-  const subject = encodeURIComponent(row.draft_subject ?? "");
-  const body = encodeURIComponent(row.draft_body ?? "");
-  return `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${subject}&body=${body}`;
-}
 
 export function OutreachPanel({ rows }: { rows: OutreachRow[] }) {
   const [items, setItems] = useState(rows);
@@ -107,7 +100,6 @@ export function OutreachPanel({ rows }: { rows: OutreachRow[] }) {
                 new Date(row.follow_up_at).getTime() < now &&
                 (row.status === "sent" || row.status === "followed_up");
               const mailto = mailtoHref(row);
-              const gmail = gmailHref(row);
               return (
                 <tr key={row.id} className={`border-t border-white/5 align-top ${followUpDue ? "bg-[#E63027]/10" : ""}`}>
                   <td className="px-4 py-3">
@@ -151,22 +143,12 @@ export function OutreachPanel({ rows }: { rows: OutreachRow[] }) {
                     >
                       {copied === row.id ? "copied" : "copy draft"}
                     </button>
-                    {gmail && (
-                      <a
-                        href={gmail}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="ml-2 text-xs rounded-lg border border-white/15 px-2 py-1 hover:bg-white/10 transition-colors inline-block"
-                      >
-                        Gmail
-                      </a>
-                    )}
                     {mailto && (
                       <a
                         href={mailto}
                         className="ml-2 text-xs rounded-lg border border-white/15 px-2 py-1 hover:bg-white/10 transition-colors inline-block"
                       >
-                        Mail
+                        compose
                       </a>
                     )}
                   </td>
