@@ -4,7 +4,7 @@
 Marketing dashboard in /admin per approved plan docs/plans/2026-07-15-marketing-dashboard.md (funnel by ?src, outreach tracker, Reddit tracker). CustomCursor permanently removed 2026-07-16.
 
 ## Now
-Executing dashboard plan Step 1 (source capture + funnel). CustomCursor deleted (file + layout refs + cursor:none CSS). STILL BLOCKED for live verification: Supabase project dead (NXDOMAIN) — user must create project, run the three docs/supabase-*.sql files (waitlist, analytics, marketing once written), set SUPABASE_URL/SUPABASE_ANON_KEY/SUPABASE_SERVICE_ROLE_KEY + ADMIN_PASSWORD in .env.local and Vercel.
+Dashboard complete + pushed (04cdaa0). Admin auth migrated from ?key= query param to cookie session (login form + httpOnly signed cookie, 30d; token HMAC-derived from ADMIN_PASSWORD; verified end-to-end locally 2026-07-16, uncommitted). STILL BLOCKED for production: Supabase project dead (NXDOMAIN) — user must create project, run the three docs/supabase-*.sql files, set SUPABASE_URL/SUPABASE_ANON_KEY/SUPABASE_SERVICE_ROLE_KEY + ADMIN_PASSWORD in Vercel and redeploy.
 
 ## Next
 1. Dashboard Step 2 (outreach tracker) + Step 3 (Reddit tracker) per plan

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
+import { cookies } from "next/headers";
 import { getSupabaseAdminClient } from "@/lib/supabase-admin";
-import { isBlocked, recordFailure } from "@/lib/admin-rate-limit";
+import { SESSION_COOKIE, verifySessionToken } from "@/lib/admin-auth";
+import { LoginForm } from "./LoginForm";
 import { OutreachPanel, type OutreachRow } from "./OutreachPanel";
 import { RedditPanel, type RedditRow } from "./RedditPanel";
 
@@ -204,38 +205,12 @@ function pct(numerator: number, denominator: number): string {
   return `${((numerator / denominator) * 100).toFixed(1)}%`;
 }
 
-export default async function AdminPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}) {
-  const { key } = await searchParams;
-  const password = process.env.ADMIN_PASSWORD;
-  const hdrs = await headers();
-  const ip =
-    hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    hdrs.get("x-real-ip") ||
-    "unknown";
+export default async function AdminPage() {
+  const cookieStore = await cookies();
+  const session = cookieStore.get(SESSION_COOKIE)?.value;
 
-  if (isBlocked(ip)) {
-    return (
-      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
-        <p className="font-body text-white/50 text-sm">
-          Too many failed attempts. Try again in an hour.
-        </p>
-      </div>
-    );
-  }
-
-  if (!password || key !== password) {
-    if (typeof key === "string" && key.length > 0) recordFailure(ip);
-    return (
-      <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center">
-        <p className="font-body text-white/50 text-sm">
-          Unauthorized. Append <code className="text-white/80">?key=YOUR_ADMIN_PASSWORD</code> to the URL.
-        </p>
-      </div>
-    );
+  if (!verifySessionToken(session)) {
+    return <LoginForm />;
   }
 
   const stats = await loadStats();
@@ -339,12 +314,12 @@ export default async function AdminPage({
                 <h2 className="font-body font-semibold text-sm text-white/70 mb-3">
                   Outreach (email targets · statuses · drafts)
                 </h2>
-                <OutreachPanel rows={stats.outreach} adminKey={typeof key === "string" ? key : ""} />
+                <OutreachPanel rows={stats.outreach} />
 
                 <h2 className="font-body font-semibold text-sm text-white/70 mb-3">
                   Reddit posts (score/comments auto · views manual from the Reddit app)
                 </h2>
-                <RedditPanel rows={stats.reddit} adminKey={typeof key === "string" ? key : ""} />
+                <RedditPanel rows={stats.reddit} />
               </>
             )}
 

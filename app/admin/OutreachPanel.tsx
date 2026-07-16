@@ -26,7 +26,7 @@ function mailtoHref(row: OutreachRow): string | null {
   return `mailto:${row.email}?subject=${subject}&body=${body}`;
 }
 
-export function OutreachPanel({ rows, adminKey }: { rows: OutreachRow[]; adminKey: string }) {
+export function OutreachPanel({ rows }: { rows: OutreachRow[] }) {
   const [items, setItems] = useState(rows);
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -39,7 +39,7 @@ export function OutreachPanel({ rows, adminKey }: { rows: OutreachRow[]; adminKe
       const res = await fetch("/api/admin/outreach", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ key: adminKey, action: "update", id, fields }),
+        body: JSON.stringify({ action: "update", id, fields }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Update failed.");

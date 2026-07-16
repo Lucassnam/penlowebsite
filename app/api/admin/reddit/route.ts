@@ -1,5 +1,5 @@
 import { getSupabaseAdminClient } from "@/lib/supabase-admin";
-import { requireAdminKey } from "@/lib/admin-auth";
+import { requireAdminSession } from "@/lib/admin-auth";
 
 const EDITABLE_FIELDS = [
   "subreddit",
@@ -52,15 +52,14 @@ export async function POST(request: Request) {
     return Response.json({ error: "Invalid request body." }, { status: 400 });
   }
 
-  const { key, action, id, fields, views } = (body ?? {}) as {
-    key?: unknown;
+  const { action, id, fields, views } = (body ?? {}) as {
     action?: unknown;
     id?: unknown;
     fields?: Record<string, unknown>;
     views?: unknown;
   };
 
-  const denied = requireAdminKey(request, key);
+  const denied = requireAdminSession(request);
   if (denied) return denied;
 
   try {

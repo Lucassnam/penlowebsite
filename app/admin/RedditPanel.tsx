@@ -20,7 +20,7 @@ export type RedditRow = {
 
 const EMPTY_FORM = { subreddit: "", title: "", url: "", src_tag: "" };
 
-export function RedditPanel({ rows, adminKey }: { rows: RedditRow[]; adminKey: string }) {
+export function RedditPanel({ rows }: { rows: RedditRow[] }) {
   const [items, setItems] = useState(rows);
   const [form, setForm] = useState(EMPTY_FORM);
   const [busy, setBusy] = useState<string | null>(null);
@@ -32,7 +32,7 @@ export function RedditPanel({ rows, adminKey }: { rows: RedditRow[]; adminKey: s
       const res = await fetch("/api/admin/reddit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ key: adminKey, ...payload }),
+        body: JSON.stringify(payload),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Request failed.");
