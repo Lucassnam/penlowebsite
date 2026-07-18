@@ -61,6 +61,32 @@ body {
 }
 .paper-texture > * { position: relative; z-index: 1; }
 
+/* ── Retro dark paper (dark sections background) ─────────────── */
+.retro-paper-dark {
+  position: relative;
+  background-color: #0A0A10;
+}
+.retro-paper-dark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23grain)' opacity='0.5'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='700' height='700'%3E%3Cfilter id='mottle'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.008' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='700' height='700' filter='url(%23mottle)' opacity='0.35'/%3E%3C/svg%3E");
+  mix-blend-mode: screen;
+  opacity: 0.11;
+}
+.retro-paper-dark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 120% 90% at 50% 35%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.55) 100%),
+    radial-gradient(ellipse 70% 50% at 50% 40%, rgba(230,48,39,0.07) 0%, rgba(230,48,39,0) 70%);
+}
+
 /* ── Glass utilities ─────────────────────────────────────────── */
 .glass-card {
   background: rgba(255, 255, 255, 0.07);

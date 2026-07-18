@@ -5,7 +5,6 @@ import { Problem } from "@/components/sections/Problem";
 import { DragDemo } from "@/components/sections/DragDemo";
 import { DocStack } from "@/components/sections/DocStack";
 import { HowItWorks } from "@/components/sections/HowItWorks";
-import { AiMarks } from "@/components/sections/AiMarks";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Faq } from "@/components/sections/Faq";
@@ -22,7 +21,6 @@ export default function Home() {
       <DragDemo />
       <DocStack />
       <HowItWorks />
-      <AiMarks />
       <FeatureGrid />
       <Testimonials />
       <Faq />

@@ -36,6 +36,8 @@ FULLY LIVE 2026-07-16: marketing dashboard verified in production (usecaret.app/
 - Full design audit: docs/design-review-2026-07-07.md
 
 ## Done
+- AiMarks section ("The AI reads your marks") unmounted from app/page.tsx per user request; component file kept on disk for easy restore — RESULT: build EXIT=0, rendered homepage has 0 hits for "The AI reads"; no nav/CTA linked to #ai-marks (2026-07-18)
+- Dark sections background: animated indigo liquid canvas replaced with static black retro-paper texture (.retro-paper-dark in globals.css; liquid-effect.tsx now a static wrapper, same props/ref API) — RESULT: build EXIT=0, rendered HTML shows class on all 3 dark sections and zero canvas elements, headless-Chrome screenshots verified texture + vignette + red glow (2026-07-18, uncommitted). NOTED (not done): component still named LiquidEffect though no longer animated.
 - Ship fixes: fake testimonials → founding-tester invite; honest stats (54-study Delgado meta-analysis, kept real 3.2s); footer/nav dead links fixed; social icons removed; /terms page created + sitemap — RESULT: build exit 0, render probes confirm new/absent strings (2026-07-14)
 - Analytics: events SQL, /api/track (spoofed signup → 400 verified), Tracker component, data-track on 4 CTAs, server-side signup events, /admin dashboard (auth gate verified: no key → Unauthorized, key → renders; DB reads UNVERIFIED until new Supabase project) (2026-07-14)
 - Copy rewrite (Hero, Problem, DocStack, FeatureGrid) per dictated investor-pitch positioning — RESULT: tsc exit 0, build exit 0, all new strings and zero old strings confirmed in curl'd localhost:4321 HTML (2026-07-13; pushed as d78fe32)
