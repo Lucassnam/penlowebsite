@@ -13,7 +13,7 @@ FULLY LIVE 2026-07-16: marketing dashboard verified in production (usecaret.app/
 4. (pre-launch) replace invented testimonials with real quotes; fill footer social/Terms links
 
 ## Constraints
-- User: "No M dash is on the website" — no em-dashes in any site copy, titles, or metadata (2026-07-14). Exception: the "——" strikethrough mark glyphs.
+- User: "No M dash is on the website" — no em-dashes in any site copy, titles, or metadata (2026-07-14). Exception: the "——" strikethrough mark glyphs. Extended 2026-07-18 ("no emdashe"): also applies to marketing copy drafted for the user (Reddit posts etc.).
 - User: "We might drastically rechange what the website looks like. So just keep that in mind" — user will supply real assets (Photoshop); refs: awwwards cooldock + supaste; leans light theme; big redesign possible, avoid over-investing in current visuals (2026-07-14)
 - User: "the 4 steps, it's good" — do not change HowItWorks step content (2026-07-13)
 - User: fix "the beige color with the boxes, the colored boxes with red lining around them, that just looks really AI"
