@@ -17,8 +17,8 @@ export function Problem() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-20 md:py-28 bg-paper paper-texture" ref={ref}>
-      <div className="max-w-5xl mx-auto px-6">
+    <section className="py-14 md:py-20 bg-paper paper-texture" ref={ref}>
+      <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-14 items-start">
           {/* Paper side */}
           <motion.div
@@ -31,7 +31,7 @@ export function Problem() {
               <p className="text-xs uppercase tracking-widest font-body text-ink-muted font-semibold mb-4">
                 Why paper?
               </p>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-ink leading-tight">
+              <h2 className="font-heading text-3xl md:text-4xl font-bold tracking-[-0.03em] text-ink leading-tight">
                 Paper is still{" "}
                 <span className="relative inline-block">
                   the best editor.
@@ -96,7 +96,7 @@ export function Problem() {
               <p className="text-xs uppercase tracking-widest font-body text-pen font-semibold mb-4">
                 Caret
               </p>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-ink leading-tight">
+              <h2 className="font-heading text-3xl md:text-4xl font-bold tracking-[-0.03em] text-ink leading-tight">
                 Same marks. On your iPad.
               </h2>
               <p className="mt-4 font-body text-base text-ink-muted leading-relaxed">

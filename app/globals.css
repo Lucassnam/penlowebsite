@@ -11,6 +11,8 @@
   --color-amber: #F2B705;
   --color-teal: #1F8A70;
   --font-display: var(--font-fraunces), Georgia, serif;
+  --font-heading: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
+  --font-script: var(--font-caveat), "Bradley Hand", cursive;
   --font-body: var(--font-inter), system-ui, sans-serif;
 }
 
@@ -37,7 +39,6 @@
 :focus-visible {
   outline: 2px solid var(--color-pen);
   outline-offset: 3px;
-  border-radius: 2px;
 }
 
 body {
@@ -72,7 +73,7 @@ body {
   inset: 0;
   pointer-events: none;
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23grain)' opacity='0.5'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23grain)' opacity='0.72'/%3E%3C/svg%3E"),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='700' height='700'%3E%3Cfilter id='mottle'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.008' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='700' height='700' filter='url(%23mottle)' opacity='0.35'/%3E%3C/svg%3E");
   mix-blend-mode: screen;
   opacity: 0.16;
@@ -150,4 +151,52 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+
+/* ── Grainy warm gradient text (hero "Handwriting") ─────────── */
+.grain-text {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23t)' opacity='0.72'/%3E%3C/svg%3E"),
+    linear-gradient(96deg, #FFB45C 0%, #FF7A2F 26%, #E63027 62%, #FF9245 100%);
+  background-size: 220px 220px, 220% 100%;
+  background-blend-mode: overlay, normal;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: grain-drift 9s linear infinite;
+}
+@keyframes grain-drift {
+  0%   { background-position: 0 0, 0% 50%; }
+  100% { background-position: 220px 110px, 200% 50%; }
+}
+
+/* ── Brushed-silver text (hero "AI.") ───────────────────────── */
+.silver-text {
+  background-image: linear-gradient(
+    100deg,
+    #6E7278 0%,
+    #C9CDD3 18%,
+    #FFFFFF 34%,
+    #FDFDFD 42%,
+    #A8ADB5 56%,
+    #EFF1F4 72%,
+    #FFFFFF 84%,
+    #8A8F97 100%
+  );
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: silver-sweep 7s ease-in-out infinite;
+}
+@keyframes silver-sweep {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain-text, .silver-text { animation: none; }
 }

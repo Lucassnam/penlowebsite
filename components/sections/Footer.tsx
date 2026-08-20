@@ -31,7 +31,7 @@ export function Footer() {
               {["Features", "How it works", "FAQ", "Waitlist"].map((link) => (
                 <li key={link}>
                   <a
-                    href={`#${link.toLowerCase().replace(/ /g, "-")}`}
+                    href={link === "How it works" ? "#demo" : `#${link.toLowerCase()}`}
                     className="font-body text-sm text-ink-muted hover:text-ink transition-colors"
                   >
                     {link}

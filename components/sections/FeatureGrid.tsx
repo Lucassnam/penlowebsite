@@ -1,172 +1,141 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { SpotlightCard } from "@/components/ui/spotlight-card";
-import { TiltCard } from "@/components/ui/tilt-card";
-import { WordReveal } from "@/components/ui/word-reveal";
+import { motion } from "framer-motion";
+import type { ReactNode } from "react";
+import { PixelCorner } from "@/components/ui/pixel-corner";
 
-const features = [
+type Feature = { icon: ReactNode; title: string; body: string };
+
+const stroke = {
+  stroke: "currentColor",
+  strokeWidth: 1.6,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+  fill: "none",
+};
+
+const features: Feature[] = [
   {
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
-        <path d="M9 12l2 2 4-4" stroke="#E63027" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" stroke="#E63027" strokeWidth="2"/>
+      <svg viewBox="0 0 24 24" aria-hidden>
+        <path d="M12 20h9M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z" {...stroke} />
       </svg>
     ),
-    title: "Keeps your formatting",
-    description:
-      "Hand-retyping edits is how styles, numbering, and headers get broken. Caret writes changes into the file the way Word does, so every detail survives untouched.",
-    size: "large",
-    dark: false,
-    tagline: "Fonts, styles, tracked changes, all preserved",
+    title: "Mark up like paper",
+    body: "Strike a word out, caret in a phrase, circle a paragraph. The same shorthand you already use on a printout.",
   },
   {
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
-        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="#E63027" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M14 2v6h6M8 13h8M8 17h5" stroke="#E63027" strokeWidth="2" strokeLinecap="round"/>
+      <svg viewBox="0 0 24 24" aria-hidden>
+        <path d="M12 3v3M12 18v3M4.2 7.5l2.6 1.5M17.2 15l2.6 1.5M4.2 16.5l2.6-1.5M17.2 9l2.6-1.5" {...stroke} />
+        <circle cx="12" cy="12" r="3.4" {...stroke} />
       </svg>
     ),
-    title: "Real .docx output",
-    description: "No proprietary format, no lock-in. You get a standard Word file that opens anywhere: Word, Google Docs, Pages.",
-    size: "small",
-    dark: true,
-    tagline: "",
+    title: "Read in seconds",
+    body: "Lift the Pencil and Caret has already interpreted the marks. No tap to confirm, no menu to open.",
   },
   {
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
-        <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="#E63027" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <svg viewBox="0 0 24 24" aria-hidden>
+        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" {...stroke} />
+        <path d="M14 2v6h6M8 13h8M8 17h5" {...stroke} />
       </svg>
     ),
-    title: "Fast recognition",
-    description: "Caret reads your marks within seconds of lifting the Pencil. No tap, no button.",
-    size: "small",
-    dark: true,
-    tagline: "",
+    title: "Real .docx out",
+    body: "A standard Word file, not a proprietary export. It opens in Word, Google Docs and Pages exactly as expected.",
   },
   {
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
-        <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9l-7-7z" stroke="#E63027" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M13 2v7h7" stroke="#E63027" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M9 17l1.5-4.5L12 15l1.5-4.5L15 17" stroke="#E63027" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <svg viewBox="0 0 24 24" aria-hidden>
+        <path d="M4 6h16M4 12h10M4 18h13" {...stroke} />
+        <circle cx="19" cy="12" r="2" {...stroke} />
       </svg>
     ),
-    title: "Works on any .docx",
-    description:
-      "Contracts, manuscripts, essays, reports, scripts. If Word opens it, Caret marks it. No special template, no reformatting your work to fit the tool.",
-    size: "large",
-    dark: false,
-    tagline: "Theses · Contracts · Articles · Scripts · Reports",
+    title: "Formatting survives",
+    body: "Styles, numbering, headers and tracked changes stay intact. Retyping is what breaks documents; Caret never retypes.",
   },
   {
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
-        <path d="M12 22V12M12 12L8 16M12 12l4 4" stroke="#E63027" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M20 16.7A4 4 0 0017 9h-1.26A8 8 0 104 16.3" stroke="#E63027" strokeWidth="2" strokeLinecap="round"/>
+      <svg viewBox="0 0 24 24" aria-hidden>
+        <path d="M12 2.8l7 2.9v5.4c0 4.3-2.9 7.7-7 9-4.1-1.3-7-4.7-7-9V5.7l7-2.9z" {...stroke} />
+        <path d="M9 12l2 2 4-4" {...stroke} />
       </svg>
     ),
-    title: "Original never touched",
-    description: "Every edit lands in a fresh copy. Your source file stays exactly as it was. You can't lose work you didn't approve.",
-    size: "large",
-    dark: false,
-    tagline: "Non-destructive by design",
+    title: "Original untouched",
+    body: "Every accepted edit lands in a fresh copy. You cannot lose work you did not approve.",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden>
+        <path d="M8 3h6l4 4v10a2 2 0 01-2 2H8a2 2 0 01-2-2V5a2 2 0 012-2z" {...stroke} />
+        <path d="M14 3v4h4" {...stroke} />
+        <path d="M4 7v12a2 2 0 002 2h9" {...stroke} />
+      </svg>
+    ),
+    title: "Any document",
+    body: "Contracts, manuscripts, theses, scripts, reports. If Word opens it, Caret marks it up.",
   },
 ];
 
 export function FeatureGrid() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-
   return (
-    <section className="py-16 md:py-24 bg-paper" ref={ref} id="features">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="features" className="bg-paper py-20 md:py-28">
+      <div className="mx-auto max-w-6xl px-6">
         <motion.div
-          className="text-center mb-14"
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
+          className="max-w-2xl"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="text-xs uppercase tracking-widest font-body text-ink-muted font-semibold mb-3">
+          <p className="font-body text-xs font-semibold uppercase tracking-[0.28em] text-pen">
             Features
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-ink leading-tight">
-            <WordReveal text="Built for people" />
+          <h2 className="mt-4 font-heading text-4xl md:text-5xl font-bold leading-[1.08] tracking-[-0.03em] text-ink">
+            Everything paper does.
             <br />
-            <span className="text-ink-muted">
-              <WordReveal text="who prefer paper." delay={0.25} />
-            </span>
+            <span className="text-ink-muted">None of what it costs you.</span>
           </h2>
         </motion.div>
 
-        {/* Bento grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {features.map((feature, i) => {
-            const isLarge = feature.size === "large";
-            const spotlightColor = feature.dark
-              ? "rgba(255,255,255,0.07)"
-              : "rgba(230,48,39,0.05)";
+        <div className="mt-14 grid grid-cols-1 border-t border-l border-black/[0.09] sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((f, i) => (
+            <motion.div
+              key={f.title}
+              className="group relative border-b border-r border-black/[0.09] p-8 md:p-10"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.55, delay: (i % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              whileHover="hover"
+              animate="rest"
+            >
+              <motion.span
+                className="pointer-events-none absolute inset-0 bg-white"
+                variants={{ rest: { opacity: 0 }, hover: { opacity: 1 } }}
+                transition={{ duration: 0.3 }}
+              />
+              {/* hairline that draws along the top edge on hover */}
+              <motion.span
+                className="pointer-events-none absolute left-0 top-[-1px] h-[2px] bg-pen"
+                variants={{ rest: { width: "0%" }, hover: { width: "100%" } }}
+                transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <PixelCorner corner={i % 2 === 0 ? "br" : "tr"} className={i % 2 === 0 ? "mb-3 mr-3" : "mr-3 mt-3"} />
 
-            return (
-              <motion.div
-                key={feature.title}
-                className={isLarge ? "md:col-span-2" : ""}
-                initial={{ opacity: 0, y: 24 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.04 + i * 0.09, ease: [0.22,1,0.36,1] }}
-              >
-                <TiltCard maxTilt={5} scale={1.015}>
-                  <SpotlightCard
-                    className={`rounded-2xl p-6 flex flex-col gap-4 h-full ${
-                      feature.dark ? "dark-card" : "premium-card"
-                    }`}
-                    spotlightColor={spotlightColor}
-                  >
-                    <motion.div
-                      className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                        feature.dark ? "bg-white/6" : "bg-black/5"
-                      }`}
-                      whileHover={{ rotate: [0, -8, 8, 0], scale: 1.1 }}
-                      transition={{ duration: 0.4 }}
-                    >
-                      {feature.icon}
-                    </motion.div>
-
-                    <div className="flex-1">
-                      <h3
-                        className={`font-body font-semibold text-base leading-snug mb-2 ${
-                          feature.dark ? "text-white" : "text-ink"
-                        }`}
-                      >
-                        {feature.title}
-                      </h3>
-                      <p
-                        className={`font-body text-sm leading-relaxed ${
-                          feature.dark ? "text-white/45" : "text-ink-muted"
-                        }`}
-                      >
-                        {feature.description}
-                      </p>
-                    </div>
-
-                    {isLarge && feature.tagline && (
-                      <p
-                        className={`mt-2 pt-4 border-t text-xs font-body font-medium tracking-wide ${
-                          feature.dark
-                            ? "border-white/10 text-white/50"
-                            : "border-black/6 text-ink-muted"
-                        }`}
-                      >
-                        {feature.tagline}
-                      </p>
-                    )}
-                  </SpotlightCard>
-                </TiltCard>
-              </motion.div>
-            );
-          })}
+              <div className="relative">
+                <motion.div
+                  className="h-6 w-6 text-pen"
+                  variants={{ rest: { y: 0, rotate: 0 }, hover: { y: -3, rotate: -6 } }}
+                  transition={{ type: "spring", stiffness: 380, damping: 16 }}
+                >
+                  {f.icon}
+                </motion.div>
+                <h3 className="mt-6 font-body text-base font-semibold text-ink">{f.title}</h3>
+                <p className="mt-2.5 font-body text-sm leading-relaxed text-ink-muted">{f.body}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
