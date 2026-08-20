@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 
+const NAV_CENTRE_PX = 46; // vertical centre of the floating bar
+
 const links = [
   { label: "Features", href: "#features" },
   { label: "How it works", href: "#demo" },
@@ -17,32 +19,54 @@ export function Nav() {
   // The panel stays out of the way until you've scrolled past the opening
   // statement. The wordmark, though, is there from the first frame.
   // Glass has to invert over the dark sections or the type stops being
-  // readable, so track which band the bar is currently floating over.
+  // readable. An IntersectionObserver watches a 1px line at the bar's centre:
+  // unlike scroll math it also re-fires when the layout shifts underneath a
+  // stationary reader (fonts settling, an FAQ answer expanding), which used to
+  // leave the bar in light mode over the dark CTA.
   const [onDark, setOnDark] = useState(true);
-  const bands = useRef<{ threshold: number; dark: [number, number][] }>({
-    threshold: 1200,
-    dark: [],
-  });
+  const threshold = useRef(1200);
 
   useEffect(() => {
-    const measure = () => {
-      const hero = document.getElementById("hero");
-      const cta = document.getElementById("waitlist");
-      const heroBottom = hero ? hero.offsetTop + hero.offsetHeight : window.innerHeight * 3;
-      const dark: [number, number][] = [[0, heroBottom]];
-      if (cta) dark.push([cta.offsetTop, cta.offsetTop + cta.offsetHeight]);
-      bands.current = { threshold: window.innerHeight * 1.15, dark };
+    const els = ["hero", "waitlist"]
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (els.length === 0) return;
+
+    const active = new Set<Element>();
+    let io: IntersectionObserver;
+
+    const attach = () => {
+      active.clear();
+      threshold.current = window.innerHeight * 1.15;
+      io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) active.add(e.target);
+            else active.delete(e.target);
+          }
+          setOnDark(active.size > 0);
+        },
+        {
+          rootMargin: `${-NAV_CENTRE_PX}px 0px ${-Math.max(0, window.innerHeight - NAV_CENTRE_PX - 1)}px 0px`,
+          threshold: 0,
+        }
+      );
+      els.forEach((el) => io.observe(el));
     };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+
+    attach();
+    const onResize = () => {
+      io.disconnect();
+      attach();
+    };
+    window.addEventListener("resize", onResize);
+    return () => {
+      io.disconnect();
+      window.removeEventListener("resize", onResize);
+    };
   }, []);
 
-  useMotionValueEvent(scrollY, "change", (y) => {
-    setShown(y > bands.current.threshold);
-    const probe = y + 46; // vertical centre of the floating bar
-    setOnDark(bands.current.dark.some(([top, bottom]) => probe > top && probe < bottom));
-  });
+  useMotionValueEvent(scrollY, "change", (y) => setShown(y > threshold.current));
 
   useEffect(() => {
     if (!shown) setMenuOpen(false);
