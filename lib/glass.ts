@@ -28,7 +28,7 @@ export const NAV_GLASS: GlassSettings = {
   saturation: 150,
   aberrationIntensity: 1.4,
   elasticity: 0,
-  cornerRadius: 22,
+  cornerRadius: 50,
   overLight: false,
   mode: "standard",
 };
@@ -46,7 +46,7 @@ export const NAV_GLASS_LIGHT: GlassSettings = {
     saturation: 200,
     aberrationIntensity: 0,
     elasticity: 0,
-    cornerRadius: 22,
+    cornerRadius: 50,
     overLight: true,
     mode: "standard",
   },
