@@ -1,9 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import { LiquidGlassSurface, frostStyle } from "@/components/ui/liquid-glass";
+import { NAV_GLASS, NAV_GLASS_LIGHT } from "@/lib/glass";
 
 const NAV_CENTRE_PX = 46; // vertical centre of the floating bar
+const DARK_BAND_IDS = ["hero", "waitlist"] as const;
 
 const links = [
   { label: "Features", href: "#features" },
@@ -19,54 +22,52 @@ export function Nav() {
   // The panel stays out of the way until you've scrolled past the opening
   // statement. The wordmark, though, is there from the first frame.
   // Glass has to invert over the dark sections or the type stops being
-  // readable. An IntersectionObserver watches a 1px line at the bar's centre:
-  // unlike scroll math it also re-fires when the layout shifts underneath a
-  // stationary reader (fonts settling, an FAQ answer expanding), which used to
-  // leave the bar in light mode over the dark CTA.
+  // readable. Measured from live rects rather than an IntersectionObserver
+  // rootMargin, which proved unreliable at the top edge of the CTA band, and
+  // re-run on layout change as well as on scroll — the document height moves
+  // under a stationary reader when fonts settle or an FAQ answer expands.
   const [onDark, setOnDark] = useState(true);
   const threshold = useRef(1200);
 
-  useEffect(() => {
-    const els = ["hero", "waitlist"]
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => el !== null);
-    if (els.length === 0) return;
-
-    const active = new Set<Element>();
-    let io: IntersectionObserver;
-
-    const attach = () => {
-      active.clear();
-      threshold.current = window.innerHeight * 1.15;
-      io = new IntersectionObserver(
-        (entries) => {
-          for (const e of entries) {
-            if (e.isIntersecting) active.add(e.target);
-            else active.delete(e.target);
-          }
-          setOnDark(active.size > 0);
-        },
-        {
-          rootMargin: `${-NAV_CENTRE_PX}px 0px ${-Math.max(0, window.innerHeight - NAV_CENTRE_PX - 1)}px 0px`,
-          threshold: 0,
-        }
-      );
-      els.forEach((el) => io.observe(el));
-    };
-
-    attach();
-    const onResize = () => {
-      io.disconnect();
-      attach();
-    };
-    window.addEventListener("resize", onResize);
-    return () => {
-      io.disconnect();
-      window.removeEventListener("resize", onResize);
-    };
+  /**
+   * Glass and type have to invert over the dark sections or the bar stops
+   * being readable. Read from live rects — cached offsets went stale when the
+   * document reflowed — and re-run both on scroll and on layout change, since
+   * the page also moves under a stationary reader as fonts settle or an FAQ
+   * answer expands.
+   */
+  const sync = useCallback(() => {
+    const probe = NAV_CENTRE_PX;
+    setOnDark(
+      DARK_BAND_IDS.some((id) => {
+        const el = document.getElementById(id);
+        if (!el) return false;
+        const r = el.getBoundingClientRect();
+        return probe > r.top && probe < r.bottom;
+      })
+    );
   }, []);
 
-  useMotionValueEvent(scrollY, "change", (y) => setShown(y > threshold.current));
+  useEffect(() => {
+    const measure = () => {
+      threshold.current = window.innerHeight * 1.15;
+      sync();
+    };
+    measure();
+
+    const ro = new ResizeObserver(sync);
+    ro.observe(document.body);
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [sync]);
+
+  useMotionValueEvent(scrollY, "change", (y) => {
+    setShown(y > threshold.current);
+    sync();
+  });
 
   useEffect(() => {
     if (!shown) setMenuOpen(false);
@@ -80,33 +81,23 @@ export function Nav() {
           <AnimatePresence>
             {shown && (
               <motion.div
-                className="absolute inset-0 rounded-[20px] md:rounded-[22px]"
+                className="absolute inset-0"
                 initial={{ opacity: 0, y: -14, scale: 0.985 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -14, scale: 0.985 }}
                 transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
-                style={{
-                  background: onDark ? "rgba(255,255,255,0.10)" : "rgba(255,255,255,0.55)",
-                  backdropFilter: "blur(34px) saturate(200%)",
-                  WebkitBackdropFilter: "blur(34px) saturate(200%)",
-                  border: onDark
-                    ? "1px solid rgba(255,255,255,0.16)"
-                    : "1px solid rgba(255,255,255,0.65)",
-                  boxShadow: onDark
-                    ? "inset 0 1px 0 rgba(255,255,255,0.22), 0 10px 30px rgba(0,0,0,0.30)"
-                    : "inset 0 1px 0 rgba(255,255,255,0.90), 0 10px 30px rgba(0,0,0,0.10)",
-                  transition: "background 320ms ease, border-color 320ms ease, box-shadow 320ms ease",
-                }}
               >
-                {/* specular sheen across the top of the glass */}
-                <span
-                  className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-[20px] md:rounded-t-[22px]"
-                  style={{
-                    background: onDark
-                      ? "linear-gradient(to bottom, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 100%)"
-                      : "linear-gradient(to bottom, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 100%)",
-                  }}
-                />
+                {/*
+                  Refraction reads as glass over the black hero and the orange
+                  CTA. Over the cream sections it either disappears or, with
+                  the library's overLight on, goes near-black — so those get a
+                  white frosted pane at the same blur instead.
+                */}
+                {onDark ? (
+                  <LiquidGlassSurface settings={NAV_GLASS} />
+                ) : (
+                  <div className="absolute inset-0" style={frostStyle(NAV_GLASS_LIGHT)} />
+                )}
               </motion.div>
             )}
           </AnimatePresence>

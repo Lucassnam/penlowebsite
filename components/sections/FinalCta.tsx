@@ -3,6 +3,8 @@
 import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { PaperShaderBackground } from "@/components/ui/paper-shader-background";
+import { LiquidGlassSurface } from "@/components/ui/liquid-glass";
+import { SHEET_GLASS } from "@/lib/glass";
 import { Magnetic } from "@/components/ui/magnetic";
 import { WordReveal } from "@/components/ui/word-reveal";
 
@@ -126,9 +128,10 @@ export function FinalCta() {
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 className="flex flex-col items-center gap-3"
               >
-                <div className="inline-flex items-center gap-3 rounded-2xl border border-white/25 bg-white/12 px-6 py-4 backdrop-blur-xl">
+                <div className="relative inline-flex items-center gap-3 overflow-hidden rounded-[20px] px-6 py-4">
+                  <LiquidGlassSurface settings={SHEET_GLASS} />
                   <motion.div
-                    className="flex h-8 w-8 items-center justify-center rounded-full bg-white"
+                    className="relative flex h-8 w-8 items-center justify-center rounded-full bg-white"
                     animate={{ rotate: [0, 360] }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
                   >
@@ -136,7 +139,7 @@ export function FinalCta() {
                       <path d="M5 13l4 4L19 7" stroke="#111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </motion.div>
-                  <div className="text-left">
+                  <div className="relative text-left">
                     <p className="font-body text-sm font-semibold text-white">You&apos;re on the list!</p>
                     <p className="font-body text-xs text-white/70">We&apos;ll email you before launch with your 40% discount.</p>
                   </div>
