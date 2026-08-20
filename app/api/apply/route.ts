@@ -1,8 +1,7 @@
 import { getSupabaseServerClient } from "@/lib/supabase";
 import { getVisitorHash } from "@/lib/visitor";
+import { normalizeEmail } from "@/lib/email";
 
-// Basic RFC-5322-ish email check — same as the waitlist route.
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {
   let body: unknown;
@@ -18,11 +17,11 @@ export async function POST(request: Request) {
     useCase?: unknown;
   };
 
-  const trimmedEmail = typeof email === "string" ? email.trim().toLowerCase() : "";
+  const trimmedEmail = normalizeEmail(email);
   const trimmedRole = typeof role === "string" ? role.trim() : "";
   const trimmedUseCase = typeof useCase === "string" ? useCase.trim() : "";
 
-  if (!trimmedEmail || trimmedEmail.length > 254 || !EMAIL_RE.test(trimmedEmail)) {
+  if (!trimmedEmail) {
     return Response.json(
       { error: "Please enter a valid email address." },
       { status: 400 },

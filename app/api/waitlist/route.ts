@@ -1,8 +1,7 @@
 import { getSupabaseServerClient } from "@/lib/supabase";
 import { getVisitorHash } from "@/lib/visitor";
+import { normalizeEmail } from "@/lib/email";
 
-// Basic RFC-5322-ish email check — good enough for a signup form.
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {
   let body: unknown;
@@ -17,9 +16,9 @@ export async function POST(request: Request) {
     source?: unknown;
   };
 
-  const trimmed = typeof email === "string" ? email.trim().toLowerCase() : "";
+  const trimmed = normalizeEmail(email);
 
-  if (!trimmed || trimmed.length > 254 || !EMAIL_RE.test(trimmed)) {
+  if (!trimmed) {
     return Response.json(
       { error: "Please enter a valid email address." },
       { status: 400 },

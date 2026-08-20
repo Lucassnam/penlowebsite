@@ -35,6 +35,7 @@ export function DemoModal() {
   const dragY = useMotionValue(0);
   const overlayOpacity = useTransform(dragY, [0, 320], [1, 0.2]);
   const panelRef = useRef<HTMLDivElement>(null);
+  const returnFocusTo = useRef<HTMLElement | null>(null);
 
   const close = useCallback(() => {
     setOpen(false);
@@ -56,19 +57,57 @@ export function DemoModal() {
     return () => window.removeEventListener("hashchange", sync);
   }, [dragY]);
 
-  // esc to close, and hold the page still behind the sheet
+  // Esc to close, hold the page still behind the sheet, keep Tab inside it,
+  // and hand focus back to whatever opened it on the way out.
   useEffect(() => {
     if (!open) return;
+
+    const opener = document.activeElement;
+    if (opener instanceof HTMLElement) returnFocusTo.current = opener;
+
+    const focusable = () =>
+      Array.from(
+        panelRef.current?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        ) ?? []
+      ).filter((el) => el.offsetParent !== null);
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
+      if (e.key === "Escape") {
+        close();
+        return;
+      }
+      if (e.key !== "Tab") return;
+
+      const items = focusable();
+      if (items.length === 0) {
+        e.preventDefault();
+        panelRef.current?.focus();
+        return;
+      }
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement;
+
+      if (e.shiftKey && (active === first || active === panelRef.current)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
+
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
     panelRef.current?.focus();
+
     return () => {
       document.body.style.overflow = prev;
       window.removeEventListener("keydown", onKey);
+      returnFocusTo.current?.focus();
+      returnFocusTo.current = null;
     };
   }, [open, close]);
 
