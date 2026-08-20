@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { LiquidGlassSurface, frostStyle } from "@/components/ui/liquid-glass";
 import { NAV_GLASS, NAV_GLASS_LIGHT } from "@/lib/glass";
+import { useNavBlur } from "@/lib/glass-store";
 
 const NAV_CENTRE_PX = 46; // vertical centre of the floating bar
 const DARK_BAND_IDS = ["hero", "waitlist"] as const;
@@ -28,6 +29,9 @@ export function Nav() {
   // under a stationary reader when fonts settle or an FAQ answer expands.
   const [onDark, setOnDark] = useState(true);
   const threshold = useRef(1200);
+
+  // Live frostedness from the on-page tuner; falls back to the preset.
+  const blurAmount = useNavBlur();
 
   /**
    * Glass and type have to invert over the dark sections or the bar stops
@@ -94,9 +98,12 @@ export function Nav() {
                   white frosted pane at the same blur instead.
                 */}
                 {onDark ? (
-                  <LiquidGlassSurface settings={NAV_GLASS} />
+                  <LiquidGlassSurface settings={{ ...NAV_GLASS, blurAmount }} />
                 ) : (
-                  <div className="absolute inset-0" style={frostStyle(NAV_GLASS_LIGHT)} />
+                  <div
+                    className="absolute inset-0"
+                    style={frostStyle({ ...NAV_GLASS_LIGHT, blurAmount })}
+                  />
                 )}
               </motion.div>
             )}

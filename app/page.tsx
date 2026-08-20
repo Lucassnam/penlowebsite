@@ -6,6 +6,7 @@ import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { Footer } from "@/components/sections/Footer";
 import { DemoModal } from "@/components/ui/demo-modal";
+import { GlassTuner } from "@/components/ui/glass-tuner";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <FinalCta />
       <Footer />
       <DemoModal />
+      <GlassTuner />
     </main>
   );
 }
