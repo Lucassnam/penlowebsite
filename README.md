@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Caret, marketing site and waitlist
 
-## Getting Started
+[![CI](https://github.com/Lucassnam/penlowebsite/actions/workflows/ci.yml/badge.svg)](https://github.com/Lucassnam/penlowebsite/actions/workflows/ci.yml)
 
-First, run the development server:
+Landing page, waitlist and admin dashboard for Caret, an iPad app for marking up
+documents by hand without destroying the document underneath.
+
+**[Open the live site](https://penlowebsite.vercel.app)**
+
+![The Caret landing page](docs/screenshot.png)
+
+## What it does
+
+This is not a brochure that ends at a signup box. The repo carries the whole
+funnel:
+
+- **Landing page** with the product argument and an animated markup demo
+- **Waitlist capture** writing through to Supabase
+- **Application flow** at `/apply` for early access
+- **Analytics pipeline** recording source attribution and funnel steps
+- **Admin dashboard** at `/admin`, behind a login form with an httpOnly signed
+  session cookie, showing the waitlist and the funnel
+- **`/glass-lab`**, a scratch route for tuning the glass surface treatment used
+  across the site
+
+Legal pages, `robots.ts`, `sitemap.ts` and an `opengraph-image` route are all
+generated rather than hand maintained.
+
+## Stack
+
+Next.js 16 with the App Router, TypeScript, Supabase for the waitlist and
+analytics tables, and a custom auth layer for the admin routes. Deployed on
+Vercel.
+
+## Running it locally
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create `.env.local` with:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key   # server only, never expose
+ADMIN_PASSWORD=something-long-and-random
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The SQL to create the tables lives in `docs/`. Run `supabase-run-all.sql`
+against a fresh project and the waitlist, analytics and application tables are
+all set up in one pass.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`SUPABASE_SERVICE_ROLE_KEY` bypasses row level security. It is read only on the
+server, and it must never be given a `NEXT_PUBLIC_` prefix.
