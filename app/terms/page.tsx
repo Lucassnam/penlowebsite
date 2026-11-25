@@ -38,7 +38,7 @@ export default function TermsPage() {
         <p>
           Caret is free. Each account includes 10 documents and 20 Converts per calendar month; the
           allowance resets at 00:00 UTC on the 1st. We may change the allowance. Changes apply from
-          the next month. If a Convert fails on our side, it does not count against your allowance.
+          the next month. If a Convert fails because of a problem on our side, Caret usually gives it back automatically.
         </p>
       </Section>
 

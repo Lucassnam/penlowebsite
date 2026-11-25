@@ -75,6 +75,10 @@ export default function PrivacyPage() {
           PDF directly to CloudConvert once, to create an editable Word copy. The same 24-hour limit
           applies.
         </p>
+        <p style={{ marginTop: "0.75rem" }}>
+          When you export an edited PDF, your iPad also sends the edited copy directly to
+          CloudConvert to turn it back into a PDF. The same 24-hour limit applies.
+        </p>
       </Section>
 
       <Section title="Analytics">
