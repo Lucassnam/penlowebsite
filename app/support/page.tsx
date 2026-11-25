@@ -48,8 +48,8 @@ export default function SupportPage() {
       <Section title="Your monthly allowance">
         <p>
           Caret is free. Each account includes 10 documents and 20 Converts per calendar month. The
-          allowance resets at 00:00 UTC on the 1st. If a Convert fails on our side, it does not
-          count against your allowance.
+          allowance resets at 00:00 UTC on the 1st. If a Convert fails because of a problem on our
+          side, Caret usually gives it back automatically.
         </p>
       </Section>
 
