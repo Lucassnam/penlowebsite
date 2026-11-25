@@ -1,177 +1,125 @@
-import Link from "next/link";
+import { LegalPage, Section, List, Mail } from "@/components/legal/LegalPage";
 
 export const metadata = {
   title: "Privacy Policy · Caret",
-  description: "How Caret handles your documents and data.",
+  description: "What leaves your iPad when you use Caret, who processes it, and how long it is kept.",
 };
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Minimal nav */}
-      <header className="border-b border-black/6 px-6 py-4">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 font-display font-bold text-xl text-[#111] hover:opacity-70 transition-opacity"
-        >
-          Caret<span style={{ color: "#E63027" }}>.</span>
-        </Link>
-      </header>
+    <LegalPage title="Privacy Policy" meta="Effective 24 November 2026">
+      <p style={{ fontSize: "0.9rem", color: "#444", marginBottom: "2.5rem" }}>
+        Caret (&ldquo;Caret&rdquo;, &ldquo;we&rdquo;) is an iPad app that turns handwritten Apple
+        Pencil marks on your documents into suggested edits. This policy explains what leaves your
+        iPad, who processes it, and how long it is kept. Caret is operated by Yeonjoo Yoo. Contact:{" "}
+        <Mail />.
+      </p>
 
-      <main className="max-w-2xl mx-auto px-6 py-16">
-        <p className="text-xs font-sans text-[#999] uppercase tracking-widest font-semibold mb-4">
-          Legal
+      <Section title="Who can use Caret">
+        <p>
+          You must be 18 or older to use Caret. The app asks you to confirm this when you sign in,
+          and we record that confirmation. Caret is not directed to children, and we do not
+          knowingly collect information from anyone under 18.
         </p>
-        <h1 className="font-serif text-4xl font-bold text-[#111] mb-2 leading-tight">
-          Privacy Policy
-        </h1>
-        <p className="text-sm text-[#999] font-sans mb-12">Last updated: June 30, 2026</p>
+      </Section>
 
-        <div className="prose prose-sm max-w-none" style={{ color: "#333", lineHeight: "1.8" }}>
-          <Section title="Overview">
-            <p>
-              Caret is an iPad app that reads your handwritten Apple Pencil marks on Word documents
-              and applies them as tracked changes. This policy explains what data leaves your device
-              and why.
-            </p>
-          </Section>
-
-          <Section title="What we process">
-            <p>
-              When you tap Convert in Caret, two things happen:
-            </p>
-            <ol style={{ paddingLeft: "1.25rem", marginTop: "0.75rem", marginBottom: "0.75rem" }}>
-              <li style={{ marginBottom: "0.5rem" }}>
-                <strong>Document conversion.</strong> Your .docx file is sent to{" "}
-                <strong>CloudConvert</strong> (cloudconvert.com) to be rendered as a PDF so Caret can
-                display it. CloudConvert processes the file on their servers and returns the PDF.
-                CloudConvert&apos;s own privacy policy governs that processing.
-              </li>
-              <li>
-                <strong>Mark recognition.</strong> An image of the annotated PDF page is sent to{" "}
-                <strong>Google Gemini</strong> (via Google&apos;s AI API) so the AI can read your
-                red pen marks and identify what changes to make. Google&apos;s AI API usage policy
-                governs that processing.
-              </li>
-            </ol>
-            <p>
-              Both transfers use encrypted HTTPS connections. Neither CloudConvert nor Google stores
-              your document or uses it to train their models under their standard API terms.
-            </p>
-          </Section>
-
-          <Section title="What we do not do">
-            <ul style={{ paddingLeft: "1.25rem", marginTop: "0.5rem" }}>
-              {[
-                "We do not store your documents on any Caret server.",
-                "We do not collect your name, email, or account information unless you join the waitlist.",
-                "We do not sell your data to third parties.",
-                "We do not use your documents to train any AI model.",
-                "We do not retain a copy of anything you send to CloudConvert or Gemini.",
-              ].map((item) => (
-                <li key={item} style={{ marginBottom: "0.4rem" }}>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </Section>
-
-          <Section title="Waitlist">
-            <p>
-              If you join the waitlist, we collect your email address so we can notify you when Caret
-              launches. We will not send marketing emails unrelated to Caret. You can ask us to remove
-              your email at any time by emailing{" "}
-              <a href="mailto:hello@usecaret.app" style={{ color: "#E63027", textDecoration: "underline" }}>
-                hello@usecaret.app
-              </a>
-              .
-            </p>
-          </Section>
-
-          <Section title="Third-party services">
-            <p>Caret currently relies on the following external services:</p>
-            <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "0.75rem", fontSize: "0.85rem" }}>
-              <thead>
-                <tr style={{ borderBottom: "1px solid #e5e5e5", textAlign: "left" }}>
-                  <th style={{ paddingBottom: "0.5rem", paddingRight: "1rem", fontWeight: 600 }}>Service</th>
-                  <th style={{ paddingBottom: "0.5rem", paddingRight: "1rem", fontWeight: 600 }}>Purpose</th>
-                  <th style={{ paddingBottom: "0.5rem", fontWeight: 600 }}>Data sent</th>
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  ["CloudConvert", ".docx to PDF rendering", "Your .docx file"],
-                  ["Google Gemini", "Red mark recognition", "Image of annotated page"],
-                ].map(([service, purpose, data]) => (
-                  <tr key={service} style={{ borderBottom: "1px solid #f0f0f0" }}>
-                    <td style={{ padding: "0.5rem 1rem 0.5rem 0", fontWeight: 500 }}>{service}</td>
-                    <td style={{ padding: "0.5rem 1rem 0.5rem 0", color: "#555" }}>{purpose}</td>
-                    <td style={{ padding: "0.5rem 0", color: "#555" }}>{data}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </Section>
-
-          <Section title="Your rights">
-            <p>
-              Depending on where you live, you may have the right to access, correct, or delete
-              personal information we hold about you. To make such a request, email us at{" "}
-              <a href="mailto:hello@usecaret.app" style={{ color: "#E63027", textDecoration: "underline" }}>
-                hello@usecaret.app
-              </a>
-              . We will respond within 30 days.
-            </p>
-          </Section>
-
-          <Section title="Changes to this policy">
-            <p>
-              If we make material changes to how we handle your data, we will update this page and
-              change the date at the top. Continued use of Caret after changes are posted constitutes
-              acceptance of the revised policy.
-            </p>
-          </Section>
-
-          <Section title="Contact">
-            <p>
-              Questions about this policy?{" "}
-              <a href="mailto:hello@usecaret.app" style={{ color: "#E63027", textDecoration: "underline" }}>
-                hello@usecaret.app
-              </a>
-            </p>
-          </Section>
-        </div>
-      </main>
-
-      <footer className="border-t border-black/6 px-6 py-6 text-center">
-        <p className="text-xs text-[#aaa] font-sans">
-          &copy; 2026 Caret. All rights reserved.{" "}
-          <Link href="/" className="underline hover:text-[#111] transition-colors">
-            Back to home
-          </Link>
+      <Section title="What stays on your iPad">
+        <p>
+          The documents you import, your pen marks, and the edited copies Caret makes are stored on
+          your iPad, inside Caret. We do not upload your library. Deleting a document in Caret
+          deletes it from your iPad.
         </p>
-      </footer>
-    </div>
-  );
-}
+      </Section>
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section style={{ marginBottom: "2.5rem" }}>
-      <h2
-        style={{
-          fontSize: "1rem",
-          fontWeight: 700,
-          color: "#111",
-          marginBottom: "0.75rem",
-          paddingBottom: "0.5rem",
-          borderBottom: "1px solid #f0f0f0",
-          letterSpacing: "-0.01em",
-        }}
-      >
-        {title}
-      </h2>
-      <div style={{ fontSize: "0.9rem", color: "#444", lineHeight: "1.8" }}>{children}</div>
-    </section>
+      <Section title="Your account">
+        <p>
+          You sign in with Apple. We receive a user ID and the email address Apple shares with us,
+          which can be a private relay address if you choose Hide My Email. We store:
+        </p>
+        <List
+          items={[
+            "that user ID and email address;",
+            "your answers to the two optional onboarding questions;",
+            "the time you agreed to AI processing and the time you confirmed you are 18 or older;",
+            "counts of the documents and Converts you use each month, with each document’s random ID and never its contents.",
+          ]}
+        />
+        <p style={{ marginTop: "0.75rem" }}>
+          We use this to run your account and your free monthly allowance (10 documents and 20
+          Converts, which resets at 00:00 UTC on the 1st of each month).
+        </p>
+      </Section>
+
+      <Section title="When you import a Word file">
+        <p>
+          To show it on screen, your iPad sends the file directly, over an encrypted connection, to
+          CloudConvert, a document-conversion service. CloudConvert converts it to PDF and sends it
+          back to your iPad. The file does not pass through our server. CloudConvert states that it
+          deletes uploaded files automatically after at most 24 hours and processes them only to
+          convert them. The conversion job is labeled with your account&apos;s user ID so that only
+          you can read its result.
+        </p>
+      </Section>
+
+      <Section title="When you tap Convert">
+        <p>
+          Your iPad sends the pages you marked (as images, with your marks on them) and the text of
+          your document, over an encrypted connection, to our server. Our server forwards them to
+          Google&apos;s Gemini API so it can read your marks. Our server does not store the pages or
+          the text. Under Google&apos;s terms for paid Gemini API use, Google does not use this
+          content to improve its products; it logs requests for a limited period only to detect
+          abuse.
+        </p>
+        <p style={{ marginTop: "0.75rem" }}>
+          If you import a PDF, then on your first Convert of that document your iPad also sends the
+          PDF directly to CloudConvert once, to create an editable Word copy. The same 24-hour limit
+          applies.
+        </p>
+      </Section>
+
+      <Section title="Analytics">
+        <p>
+          We record a small number of in-app events linked to your account (for example, that you
+          finished the tutorial, or that you confirmed you are 18 or older), to understand whether
+          Caret works. We do not use third-party analytics or advertising tools, and we do not track
+          you across other companies&apos; apps or websites.
+        </p>
+      </Section>
+
+      <Section title="How long we keep data">
+        <List
+          items={[
+            "Account data (user ID, email, onboarding answers, consent times) is kept until you delete your account.",
+            "Usage counts and analytics events are deleted when you delete your account.",
+            "CloudConvert keeps your files for at most 24 hours.",
+            "Our server does not store your pages or document text.",
+            "Google logs Gemini requests for a limited period only to detect abuse.",
+          ]}
+        />
+      </Section>
+
+      <Section title="Deleting your account">
+        <p>
+          In Caret, open Settings and tap Delete account. This permanently deletes your account,
+          your profile, your usage counts and your events from our server. Documents on your iPad
+          stay until you delete them or delete the app.
+        </p>
+      </Section>
+
+      <Section title="Services we use">
+        <p>
+          Supabase (accounts and our server), CloudConvert (document conversion), Google Gemini API
+          (reading your marks), and Apple (Sign in with Apple). Each processes data under its own
+          terms.
+        </p>
+      </Section>
+
+      <Section title="Your rights and changes">
+        <p>
+          You can ask us to access, correct or delete your information by emailing <Mail />; we
+          reply within 30 days. If we change this policy we will update this page and its date.
+        </p>
+      </Section>
+    </LegalPage>
   );
 }

@@ -1,146 +1,103 @@
 import Link from "next/link";
+import { LegalPage, Section, Mail, LINK_STYLE } from "@/components/legal/LegalPage";
 
 export const metadata = {
-  title: "Terms of Service · Caret",
-  description: "The terms that govern your use of the Caret website and waitlist.",
+  title: "Terms of Use · Caret",
+  description: "The terms that govern your use of the Caret iPad app.",
 };
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Minimal nav */}
-      <header className="border-b border-black/6 px-6 py-4">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 font-display font-bold text-xl text-[#111] hover:opacity-70 transition-opacity"
-        >
-          Caret<span style={{ color: "#E63027" }}>.</span>
-        </Link>
-      </header>
+    <LegalPage title="Terms of Use" meta="Effective 24 November 2026">
+      <p style={{ fontSize: "0.9rem", color: "#444", marginBottom: "2.5rem" }}>
+        These terms are between you and Yeonjoo Yoo (&ldquo;we&rdquo;), who operates Caret, an iPad
+        app that turns handwritten Apple Pencil marks on your documents into suggested edits. By
+        signing in and continuing, you agree to them. Contact: <Mail />.
+      </p>
 
-      <main className="max-w-2xl mx-auto px-6 py-16">
-        <p className="text-xs font-sans text-[#999] uppercase tracking-widest font-semibold mb-4">
-          Legal
+      <Section title="Who can use Caret">
+        <p>
+          You must be 18 or older. You confirm this when you sign in. If you are under 18, do not
+          use Caret.
         </p>
-        <h1 className="font-serif text-4xl font-bold text-[#111] mb-2 leading-tight">
-          Terms of Service
-        </h1>
-        <p className="text-sm text-[#999] font-sans mb-12">Last updated: July 14, 2026</p>
+      </Section>
 
-        <div className="prose prose-sm max-w-none" style={{ color: "#333", lineHeight: "1.8" }}>
-          <Section title="Agreement">
-            <p>
-              These terms govern your use of the Caret website (usecaret.app) and waitlist. By
-              using the site or joining the waitlist, you agree to them. The Caret iPad app is
-              not yet released; when it launches, its use will be governed by separate terms
-              presented in the app.
-            </p>
-          </Section>
-
-          <Section title="The service today">
-            <p>
-              This site describes Caret, an upcoming iPad app, and lets you join a waitlist to
-              be notified at launch. Caret is pre-release software: features, availability
-              dates, and pricing described on this site may change before launch.
-            </p>
-          </Section>
-
-          <Section title="Waitlist and launch discount">
-            <p>
-              Joining the waitlist costs nothing and creates no obligation for you or for us.
-              The advertised launch discount for waitlist members will be honored for a limited
-              window after launch, communicated by email. You can leave the waitlist at any
-              time by emailing{" "}
-              <a href="mailto:hello@usecaret.app" style={{ color: "#E63027", textDecoration: "underline" }}>
-                hello@usecaret.app
-              </a>
-              .
-            </p>
-          </Section>
-
-          <Section title="Acceptable use">
-            <p>
-              Don&apos;t attempt to disrupt the site, probe or overload its infrastructure,
-              submit email addresses you don&apos;t control, or scrape the site for bulk data
-              collection.
-            </p>
-          </Section>
-
-          <Section title="Intellectual property">
-            <p>
-              The Caret name, logo, and all content on this site belong to us. You may not use
-              them without written permission, except to link to or accurately describe the
-              product.
-            </p>
-          </Section>
-
-          <Section title="Disclaimers">
-            <p>
-              The site is provided &ldquo;as is&rdquo; without warranties of any kind. To the
-              maximum extent permitted by law, we are not liable for any indirect, incidental,
-              or consequential damages arising from your use of the site or reliance on
-              pre-release product descriptions.
-            </p>
-          </Section>
-
-          <Section title="Privacy">
-            <p>
-              How we handle your data is described in our{" "}
-              <Link href="/privacy" style={{ color: "#E63027", textDecoration: "underline" }}>
-                Privacy Policy
-              </Link>
-              .
-            </p>
-          </Section>
-
-          <Section title="Changes to these terms">
-            <p>
-              If we make material changes, we will update this page and change the date at the
-              top. Continued use of the site after changes are posted constitutes acceptance of
-              the revised terms.
-            </p>
-          </Section>
-
-          <Section title="Contact">
-            <p>
-              Questions about these terms?{" "}
-              <a href="mailto:hello@usecaret.app" style={{ color: "#E63027", textDecoration: "underline" }}>
-                hello@usecaret.app
-              </a>
-            </p>
-          </Section>
-        </div>
-      </main>
-
-      <footer className="border-t border-black/6 px-6 py-6 text-center">
-        <p className="text-xs text-[#aaa] font-sans">
-          &copy; 2026 Caret. All rights reserved.{" "}
-          <Link href="/" className="underline hover:text-[#111] transition-colors">
-            Back to home
-          </Link>
+      <Section title="Your account">
+        <p>
+          You sign in with Apple. You are responsible for activity on your account. You can delete
+          your account at any time in Settings, which permanently deletes it from our server. See
+          the{" "}
+          <Link href="/privacy" style={LINK_STYLE}>
+            Privacy Policy
+          </Link>{" "}
+          for what that removes.
         </p>
-      </footer>
-    </div>
-  );
-}
+      </Section>
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section style={{ marginBottom: "2.5rem" }}>
-      <h2
-        style={{
-          fontSize: "1rem",
-          fontWeight: 700,
-          color: "#111",
-          marginBottom: "0.75rem",
-          paddingBottom: "0.5rem",
-          borderBottom: "1px solid #f0f0f0",
-          letterSpacing: "-0.01em",
-        }}
-      >
-        {title}
-      </h2>
-      <div style={{ fontSize: "0.9rem", color: "#444", lineHeight: "1.8" }}>{children}</div>
-    </section>
+      <Section title="Free use and the monthly allowance">
+        <p>
+          Caret is free. Each account includes 10 documents and 20 Converts per calendar month; the
+          allowance resets at 00:00 UTC on the 1st. We may change the allowance. Changes apply from
+          the next month. If a Convert fails on our side, it does not count against your allowance.
+        </p>
+      </Section>
+
+      <Section title="Your documents">
+        <p>
+          You keep all rights to your documents. You give us permission only to process them as
+          needed to run Caret, as described in the Privacy Policy: your iPad sends files to
+          CloudConvert, and marked pages and document text go through our server to Google&apos;s
+          Gemini API. You confirm you have the right to use any document you open in Caret.
+        </p>
+      </Section>
+
+      <Section title="Suggested edits">
+        <p>
+          Caret suggests edits that you review. When it is not sure about a mark, it flags it for
+          you to check. You are responsible for checking each change before you accept it and for
+          the documents you create. Caret never changes your original file; accepted edits go into
+          a new copy.
+        </p>
+      </Section>
+
+      <Section title="Acceptable use">
+        <p>
+          Do not use Caret to break the law, to process content you have no right to use, or to
+          interfere with or overload the service.
+        </p>
+      </Section>
+
+      <Section title="Availability and changes">
+        <p>
+          Caret depends on third-party services and an internet connection for Convert. We do not
+          promise it will always be available. We may change or end the service; if we do, your
+          documents on your iPad stay on your iPad.
+        </p>
+      </Section>
+
+      <Section title="No warranty and limit of liability">
+        <p>
+          Caret is provided &ldquo;as is&rdquo;. To the extent the law allows, we are not liable for
+          indirect or consequential losses, or for losses from edits you accepted, and our total
+          liability is limited to the amount you paid us, which for a free app is zero. Nothing here
+          limits rights you have under law that cannot be limited.
+        </p>
+      </Section>
+
+      <Section title="Apple">
+        <p>
+          Apple&apos;s standard Licensed Application End User License Agreement applies to your use
+          of the app. Apple is not a party to these terms and has no obligation to provide support
+          for Caret.
+        </p>
+      </Section>
+
+      <Section title="Changes to these terms">
+        <p>
+          If we change these terms we will update this page and its date. Continued use after a
+          change means you accept it.
+        </p>
+      </Section>
+    </LegalPage>
   );
 }
